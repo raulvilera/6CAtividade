@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade de Ciências - 2º Bimestre</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 50%, #c0c0c0 100%);
+            background-attachment: fixed;
+            padding: 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 4px solid #1e3a8a;
+            padding-bottom: 20px;
+        }
+
+        .school-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .info-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-field.name-field { flex: 0 0 46%; }
+        .info-field.email-field { flex: 0 0 46%; }
+        .info-field.series-field { flex: 0 0 14%; }
+        .info-field.date-field { flex: 0 0 14%; }
+
+        .info-field label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1e3a8a;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-field input,
+        .info-field select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .info-field input:focus,
+        .info-field select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .activity-title {
+            font-size: 30px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin: 30px 0 10px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .class-info {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #166534;
+            margin-bottom: 30px;
+            padding: 8px 0;
+            border-bottom: 2px dashed #166534;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .question-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 11.34px; /* 3mm exatos */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-number {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .question-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .question-image {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .alternatives {
+            margin-top: 15px;
+        }
+
+        .alternative {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+
+        .alternative:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .alternative.selected {
+            background: #1a5f2a !important;
+            border: 2px solid #2ecc71;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .alternative input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #1a5f2a;
+        }
+
+        .alternative label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .essay-section {
+            margin-top: 20px;
+        }
+
+        .essay-item {
+            margin-bottom: 25px;
+        }
+
+        .essay-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 15px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        .lined-paper {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 6px;
+            min-height: 110px;
+            padding: 15px;
+            color: #2d3748;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 2;
+            resize: vertical;
+            width: 100%;
+            background-image: repeating-linear-gradient(
+                transparent,
+                transparent 31px,
+                #cbd5e0 31px,
+                #cbd5e0 32px
+            );
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lined-paper:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3a8a 0%, #10b981 100%);
+            color: white;
+            padding: 16px 45px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: block;
+            margin: 35px auto 0;
+            transition: all 0.3s;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 20px; max-width: 100%; }
+            .question-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+            .submit-btn { display: none; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .info-field.name-field,
+            .info-field.email-field,
+            .info-field.series-field,
+            .info-field.date-field { flex: 0 0 100%; }
+            .container { padding: 20px; }
+            .activity-title { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="school-name">E.E. PROFº WANDA MASCAGNI DE SÁ</div>
+            
+            <div class="info-row">
+                <div class="info-field name-field">
+                    <label for="studentName">NOME:</label>
+                    <select id="studentName" name="studentName">
+                        <option value="">Selecione seu nome...</option>
+                        <option value="1" data-email="0000121488538xsp@al.educacao.sp.gov.br">AGATHA RODRIGUES MIRANDA</option>
+                        <option value="2" data-email="00001150775117SP@al.educacao.sp.gov.br">ALICE DA SILVA VIEIRA</option>
+                        <option value="3" data-email="00001214940778SP@al.educacao.sp.gov.br">ANA LETÍCIA MARTINS DA SILVA</option>
+                        <option value="4" data-email="00001214870016sp@al.educacao.sp.gov.br">ARTHUR DEIVID DA SILVA FARIAS</option>
+                        <option value="5" data-email="00001221516528SP@al.educacao.sp.gov.br">CLARA JAZMIN URDAPILLETA GONZALEZ</option>
+                        <option value="7" data-email="00001155071074sp@al.educacao.sp.gov.br">EMILY COSTA PEREIRA</option>
+                        <option value="8" data-email="00001158794058sp@al.educacao.sp.gov.br">FELIPE BARROS DE FREITAS</option>
+                        <option value="9" data-email="00001150787399SP@al.educacao.sp.gov.br">HELOISA NEVES DA SILVA</option>
+                        <option value="10" data-email="00001158811949sp@al.educacao.sp.gov.br">ISABELA SEVERA RAULINO</option>
+                        <option value="12" data-email="00001158827349SP@al.educacao.sp.gov.br">JOAO VITOR BARBOSA PONTES</option>
+                        <option value="14" data-email="00001216216174SP@al.educacao.sp.gov.br">LAURAH APARECIDA CANDIDO DE OLIVEIRA</option>
+                        <option value="15" data-email="00001214874605SP@al.educacao.sp.gov.br">MATHEUS DUARTE DA SILVA</option>
+                        <option value="17" data-email="00001214935175SP@al.educacao.sp.gov.br">ROSA MARIA OLIVEIRA ALMEIDA</option>
+                        <option value="18" data-email="00001229767241sp@al.educacao.sp.gov.br">SARAH LIVIA NUNES NASCIMENTO</option>
+                        <option value="19" data-email="00001223579098sp@al.educacao.sp.gov.br">TALITA VITORIA VIEIRA NUNES</option>
+                        <option value="20" data-email="00001158913047sp@al.educacao.sp.gov.br">VICTOR EDUARDO DOS SANTOS</option>
+                        <option value="21" data-email="00001164683524SP@al.educacao.sp.gov.br">VITOR HUGO BRAZ GOMES</option>
+                        <option value="22" data-email="00001165284844SP@al.educacao.sp.gov.br">LORENNA ANDRADE DE OLIVEIRA</option>
+                        <option value="23" data-email="00001254805813sp@al.educacao.sp.gov.br">MARIA EDUARDA ARAUJO GARRIDO</option>
+                        <option value="24" data-email="00001214774891sp@al.educacao.sp.gov.br">RAISSA MATHIAS ANDRADE</option>
+                        <option value="25" data-email="">UELITON VIEIRA DA SILVA</option>
+                        <option value="26" data-email="00001158447383SP@al.educacao.sp.gov.br">VALENTINA DOS SANTOS CORREA</option>
+                        <option value="27" data-email="">MARIA VITORIA ALMEIDA SANTOS</option>
+                        <option value="28" data-email="0000121484716xsp@al.educacao.sp.gov.br">CATARYNA DOS SANTOS</option>
+                    </select>
+                </div>
+                <div class="info-field email-field">
+                    <label for="studentEmail">EMAIL INSTITUCIONAL:</label>
+                    <input type="email" id="studentEmail" name="studentEmail" readonly placeholder="Selecione seu nome">
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-field series-field">
+                    <label for="series">SÉRIE:</label>
+                    <input type="text" id="series" name="series" value="6º Ano C" readonly>
+                </div>
+                <div class="info-field date-field">
+                    <label for="date">DATA:</label>
+                    <input type="date" id="date" name="date">
+                </div>
+            </div>
+
+            <div class="activity-title">ATIVIDADE DE CIÊNCIAS (2º BIMESTRE)</div>
+            <div class="class-info">6º Ano C</div>
+        </div>
+
+        <!-- Questão 1 - Múltipla Escolha -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 1 (Múltipla Escolha)</div>
+            <div class="question-text">
+                <strong>Estados Físicos da Água:</strong><br>
+                Observe a imagem abaixo que representa diferentes estados físicos da água em nosso planeta. A água é uma substância fundamental para a vida e pode ser encontrada em três estados físicos diferentes: sólido, líquido e gasoso. Analise cuidadosamente a imagem e responda: em qual estado físico a água se encontra nas geleiras e icebergs, e qual mudança de estado físico ocorre quando um cubo de gelo é deixado em temperatura ambiente e começa a derreter?
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/pmzTUDwfxtFureJx.jpg" alt="Estados físicos da água - geleiras e icebergs representando água no estado sólido" class="question-image">
+            <div class="alternatives">
+                <div class="alternative">
+                    <input type="radio" name="q1" id="q1a" value="a">
+                    <label for="q1a">a) Estado líquido; fusão (derretimento)</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q1" id="q1b" value="b">
+                    <label for="q1b">b) Estado sólido; fusão (derretimento)</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q1" id="q1c" value="c">
+                    <label for="q1c">c) Estado gasoso; condensação</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q1" id="q1d" value="d">
+                    <label for="q1d">d) Estado sólido; solidificação</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 2 - Dissertativa (Corrigida com campos individuais) -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 2 (Dissertativa)</div>
+            <div class="question-text">
+                <strong>Ciclo da Água e Evapotranspiração:</strong><br>
+                A Floresta Amazônica desempenha um papel crucial no ciclo da água não apenas do Brasil, mas de toda a América do Sul. Através do processo de evapotranspiração, as árvores da floresta liberam grandes quantidades de vapor de água para a atmosfera, formando os chamados "rios voadores". Esses rios de vapor viajam milhares de quilômetros, levando chuvas para outras regiões do país.<br><br>
+                
+                Com base na imagem e nos estudos sobre o ciclo da água, explique detalhadamente:
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/rEnTcKsiCRhXzkgf.webp" alt="Floresta Amazônica e formação de nuvens através da evapotranspiração - rios voadores" class="question-image">
+            
+            <div class="essay-section">
+                <div class="essay-item">
+                    <label class="essay-label">a) O que é evapotranspiração e como ela difere da evaporação simples?</label>
+                    <textarea class="lined-paper" name="q2a" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">b) Por que o desmatamento da Amazônia pode causar diminuição das chuvas em outras regiões do Brasil?</label>
+                    <textarea class="lined-paper" name="q2b" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">c) Qual a importância da vegetação para a manutenção do ciclo hidrológico?</label>
+                    <textarea class="lined-paper" name="q2c" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 3 - Múltipla Escolha -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 3 (Múltipla Escolha)</div>
+            <div class="question-text">
+                <strong>Distribuição da Água no Planeta:</strong><br>
+                O gráfico abaixo representa a distribuição da água em nosso planeta. Sabemos que aproximadamente 70% da superfície terrestre é coberta por água, mas nem toda essa água está disponível para consumo humano. Analise as informações e responda: qual a porcentagem de água doce disponível no planeta e por que a maior parte dessa água doce é de difícil acesso?
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/WFQfHNMsPCsHfsoL.jpg" alt="Distribuição de água doce e salgada no planeta - gráfico de pizza" class="question-image">
+            <div class="alternatives">
+                <div class="alternative">
+                    <input type="radio" name="q3" id="q3a" value="a">
+                    <label for="q3a">a) 97,5% é água doce; está toda em rios e lagos de fácil acesso</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q3" id="q3b" value="b">
+                    <label for="q3b">b) 2,5% é água doce; 69% está concentrada em geleiras de difícil acesso</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q3" id="q3c" value="c">
+                    <label for="q3c">c) 50% é água doce; está distribuída igualmente em oceanos e rios</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q3" id="q3d" value="d">
+                    <label for="q3d">d) 10% é água doce; está toda em aquíferos subterrâneos</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 4 - Dissertativa com campos individuais -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 4 (Dissertativa)</div>
+            <div class="question-text">
+                <strong>Poluição da Água e Contaminação:</strong><br>
+                O Rio Tietê, que nasce no município de Salesópolis (SP), é um exemplo preocupante de poluição hídrica. A imagem abaixo mostra o contraste entre a nascente preservada do rio e trechos altamente poluídos que atravessam áreas urbanas. A poluição das águas é causada por diferentes fontes: industriais, agrícolas e domésticas.<br><br>
+                
+                Com base na imagem e nos estudos sobre poluição da água, responda:
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído mostrando contaminação por esgoto e resíduos em área urbana" class="question-image">
+            
+            <div class="essay-section">
+                <div class="essay-item">
+                    <label class="essay-label">a) Quais são as principais fontes de contaminação das águas mencionadas e como cada uma delas polui os recursos hídricos?</label>
+                    <textarea class="lined-paper" name="q4a" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">b) O que é chorume e como ele pode contaminar os lençóis freáticos?</label>
+                    <textarea class="lined-paper" name="q4b" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">c) Qual a importância das Estações de Tratamento de Água (ETA) e Estações de Tratamento de Esgoto (ETE) para a qualidade da água?</label>
+                    <textarea class="lined-paper" name="q4c" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 5 - Múltipla Escolha -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 5 (Múltipla Escolha)</div>
+            <div class="question-text">
+                <strong>Biosfera e Componentes do Ecossistema:</strong><br>
+                A biosfera é o conjunto de todas as regiões do planeta onde existe vida. Ela inclui componentes bióticos (seres vivos) e abióticos (elementos não vivos). Observe a imagem de um ecossistema e identifique corretamente a relação entre os componentes bióticos e abióticos apresentados.
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/EWOGJoNcFXwCwPtM.jpg" alt="Ecossistema mostrando componentes bióticos (plantas, animais) e abióticos (água, solo, luz)" class="question-image">
+            <div class="alternatives">
+                <div class="alternative">
+                    <input type="radio" name="q5" id="q5a" value="a">
+                    <label for="q5a">a) Componentes bióticos: água, solo, luz solar; Componentes abióticos: plantas, animais</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q5" id="q5b" value="b">
+                    <label for="q5b">b) Componentes bióticos: plantas, animais, seres humanos; Componentes abióticos: água, solo, luz solar, ar</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q5" id="q5c" value="c">
+                    <label for="q5c">c) Componentes bióticos: apenas animais; Componentes abióticos: apenas plantas</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q5" id="q5d" value="d">
+                    <label for="q5d">d) Componentes bióticos: rochas e minerais; Componentes abióticos: seres vivos</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 6 - Dissertativa com campos individuais -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 6 (Dissertativa)</div>
+            <div class="question-text">
+                <strong>Propriedades da Matéria e Estados Físicos:</strong><br>
+                A matéria pode apresentar-se em diferentes estados físicos (sólido, líquido e gasoso), cada um com propriedades específicas de forma e volume. Observe as imagens abaixo que mostram a mesma substância (água) em diferentes estados físicos.<br><br>
+                
+                Com base nas imagens e nos estudos sobre estados físicos da matéria, explique:
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/IcRQtHGcbNVixAJQ.jpg" alt="Água em três estados físicos: gelo (sólido), água (líquido) e vapor (gasoso)" class="question-image">
+            
+            <div class="essay-section">
+                <div class="essay-item">
+                    <label class="essay-label">a) Quais são as características de forma e volume em cada estado físico (sólido, líquido e gasoso)?</label>
+                    <textarea class="lined-paper" name="q6a" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">b) Por que a água no estado líquido assume a forma do recipiente, enquanto no estado sólido mantém sua forma?</label>
+                    <textarea class="lined-paper" name="q6b" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">c) O que acontece com as moléculas de água quando ocorre a mudança do estado líquido para o gasoso (evaporação)?</label>
+                    <textarea class="lined-paper" name="q6c" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 7 - Múltipla Escolha -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 7 (Múltipla Escolha)</div>
+            <div class="question-text">
+                <strong>Ciclo da Água - Formação das Chuvas:</strong><br>
+                O ciclo da água envolve diversas mudanças de estado físico. Observe o esquema do ciclo hidrológico abaixo. Quando o vapor de água sobe para a atmosfera e encontra temperaturas mais baixas, ocorre um processo importante que forma as nuvens. Qual é o nome desse processo e qual mudança de estado físico ele representa?
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/YACQQjpmxRemiPtY.png" alt="Ciclo da água mostrando evaporação, condensação e precipitação" class="question-image">
+            <div class="alternatives">
+                <div class="alternative">
+                    <input type="radio" name="q7" id="q7a" value="a">
+                    <label for="q7a">a) Evaporação; mudança do estado líquido para o gasoso</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q7" id="q7b" value="b">
+                    <label for="q7b">b) Condensação; mudança do estado gasoso para o líquido</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q7" id="q7c" value="c">
+                    <label for="q7c">c) Solidificação; mudança do estado líquido para o sólido</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q7" id="q7d" value="d">
+                    <label for="q7d">d) Sublimação; mudança direta do estado sólido para o gasoso</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 8 - Dissertativa com campos individuais -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 8 (Dissertativa)</div>
+            <div class="question-text">
+                <strong>Água Potável e Acesso Desigual:</strong><br>
+                A imagem abaixo mostra a realidade de diferentes comunidades em relação ao acesso à água potável e saneamento básico. Enquanto algumas regiões possuem tratamento adequado de água e esgoto, outras ainda sofrem com a falta desses serviços essenciais. O Objetivo de Desenvolvimento Sustentável (ODS) 6 da ONU visa "Assegurar a disponibilidade e gestão sustentável da água e saneamento para todas e todos" até 2030.<br><br>
+                
+                Com base na imagem e nos estudos sobre água potável, responda:
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/ZZDIXbqmbfUIrEJu.jpeg" alt="Contraste entre comunidades com e sem acesso à água potável e saneamento básico" class="question-image">
+            
+            <div class="essay-section">
+                <div class="essay-item">
+                    <label class="essay-label">a) Quais são os principais desafios para garantir o acesso universal à água potável e segura no Brasil e no mundo?</label>
+                    <textarea class="lined-paper" name="q8a" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">b) Por que é importante economizar água potável, considerando que a maior parte da água do planeta é salgada?</label>
+                    <textarea class="lined-paper" name="q8b" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">c) Cite três ações que podem ser realizadas em casa ou na escola para contribuir com a conservação da água.</label>
+                    <textarea class="lined-paper" name="q8c" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 9 - Múltipla Escolha -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 9 (Múltipla Escolha)</div>
+            <div class="question-text">
+                <strong>Lençóis Freáticos e Infiltração:</strong><br>
+                A imagem abaixo representa o processo de infiltração da água da chuva no solo e a formação dos lençóis freáticos. A vegetação desempenha um papel fundamental nesse processo. Quando o solo é impermeabilizado (com asfalto, concreto, etc.), a água não consegue infiltrar adequadamente. O que acontece em áreas com solo impermeabilizado quando chove intensamente?
+            </div>
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/QttvhoNxsBMgIBbh.jpg" alt="Esquema de lençol freático e infiltração da água no solo" class="question-image">
+            <div class="alternatives">
+                <div class="alternative">
+                    <input type="radio" name="q9" id="q9a" value="a">
+                    <label for="q9a">a) A água infiltra mais rapidamente, abastecendo os lençóis freáticos</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q9" id="q9b" value="b">
+                    <label for="q9b">b) A água não penetra no solo, causando enchentes e alagamentos</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q9" id="q9c" value="c">
+                    <label for="q9c">c) A água evapora imediatamente, não causando nenhum problema</label>
+                </div>
+                <div class="alternative">
+                    <input type="radio" name="q9" id="q9d" value="d">
+                    <label for="q9d">d) A água é absorvida pelas raízes das plantas, mesmo sem vegetação</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questão 10 - Dissertativa com campos individuais -->
+        <div class="question-card">
+            <div class="question-number">QUESTÃO 10 (Dissertativa)</div>
+            <div class="question-text">
+                <strong>Reciclagem e Preservação dos Recursos Hídricos:</strong><br>
+                A imagem abaixo mostra trabalhadores em um centro de reciclagem separando diferentes tipos de materiais. A reciclagem e a coleta seletiva de resíduos sólidos são ações importantes não apenas para reduzir a quantidade de lixo, mas também para proteger os recursos hídricos.<br><br>
+                
+                Com base na imagem e nos estudos sobre poluição da água, explique:
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY6fkSOBLdAtlXSyJyatGv3lEy9_78uVNN3t5bDl5_lPn3TvaKSjlFfW6H1I0W6kIOcDxmOR6jTyGRlQMklvj45hrBtz1NLtuBNRw0HYn5OaXnDfvOM-HCofhGPvASuWbpilowvpiPRigYdS4s7Nx_cZYBlrMVezUUQW0OEOD6MXHEm0yBlnueazr9JyXZ/s1536/ChatGPT%20Image%2023%20de%20mai.%20de%202026,%2014_47_30.png" alt="Trabalhadores em centro de triagem fazendo reciclagem e separação de materiais" class="question-image">
+            
+            <div class="essay-section">
+                <div class="essay-item">
+                    <label class="essay-label">a) Como o descarte inadequado de lixo pode contaminar rios, lagos e oceanos?</label>
+                    <textarea class="lined-paper" name="q10a" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">b) De que maneira a reciclagem contribui para a preservação da água e dos ecossistemas aquáticos?</label>
+                    <textarea class="lined-paper" name="q10b" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+                <div class="essay-item">
+                    <label class="essay-label">c) Por que é importante que o lixo não seja descartado em locais inadequados, como margens de rios ou terrenos baldios?</label>
+                    <textarea class="lined-paper" name="q10c" rows="4" placeholder="Digite sua resposta..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="submitActivity()">ENTREGAR ATIVIDADE</button>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('date').valueAsDate = new Date();
+
+        // Auto-fill institutional email when student name is selected
+        document.getElementById('studentName').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const email = selectedOption.getAttribute('data-email');
+            document.getElementById('studentEmail').value = email || '';
+        });
+
+        // Handle alternative selection (dark green feedback)
+        document.querySelectorAll('.alternative').forEach(alt => {
+            alt.addEventListener('click', function(e) {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
+                
+                const radio = this.querySelector('input[type="radio"]');
+                const questionName = radio.name;
+                
+                // Remove selected class from siblings
+                document.querySelectorAll(`input[name="${questionName}"]`).forEach(r => {
+                    r.parentElement.classList.remove('selected');
+                });
+                
+                // Apply selected state
+                radio.checked = true;
+                this.classList.add('selected');
+            });
+        });
+
+        // ============================================
+        // ⚠️ INTEGRATION WITH GOOGLE APPS SCRIPT ⚠️
+        // ============================================
+        
+        // 🔴 SUBSTITUA ESTA URL PELA URL DO SEU APPS SCRIPT DEPLOYED:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/SUA_CHAVE_AQUI/exec';
+
+        function submitActivity() {
+            const studentName = document.getElementById('studentName');
+            const studentEmail = document.getElementById('studentEmail').value;
+            const date = document.getElementById('date').value;
+            
+            // Validation: student name
+            if (!studentName.value) {
+                alert('⚠️ Por favor, selecione seu nome no dropdown antes de entregar a atividade.');
+                return;
+            }
+            
+            // Validation: date
+            if (!date) {
+                alert('⚠️ Por favor, preencha a data antes de entregar a atividade.');
+                return;
+            }
+            
+            // Validation: multiple choice questions
+            const mcQuestions = ['q1', 'q3', 'q5', 'q7', 'q9'];
+            let mcComplete = true;
+            
+            for (let q of mcQuestions) {
+                if (!document.querySelector(`input[name="${q}"]:checked`)) {
+                    mcComplete = false;
+                    break;
+                }
+            }
+            
+            if (!mcComplete) {
+                alert('⚠️ Por favor, responda todas as questões de múltipla escolha antes de entregar.');
+                return;
+            }
+            
+            // Validation: essay questions (individual fields a, b, c)
+            const essayFields = [
+                'q2a', 'q2b', 'q2c',
+                'q4a', 'q4b', 'q4c',
+                'q6a', 'q6b', 'q6c',
+                'q8a', 'q8b', 'q8c',
+                'q10a', 'q10b', 'q10c'
+            ];
+            
+            let essaysComplete = true;
+            for (let field of essayFields) {
+                const textarea = document.querySelector(`textarea[name="${field}"]`);
+                if (textarea && textarea.value.trim().length < 20) {
+                    essaysComplete = false;
+                    break;
+                }
+            }
+            
+            if (!essaysComplete) {
+                if (!confirm('⚠️ Algumas questões dissertativas parecem estar incompletas. Deseja continuar mesmo assim?')) {
+                    return;
+                }
+            }
+            
+            // Prepare data payload for Apps Script
+            const payload = {
+                studentName: studentName.options[studentName.selectedIndex].text,
+                studentEmail: studentEmail,
+                date: date,
+                // Multiple choice answers
+                q1: document.querySelector('input[name="q1"]:checked')?.value || '',
+                q3: document.querySelector('input[name="q3"]:checked')?.value || '',
+                q5: document.querySelector('input[name="q5"]:checked')?.value || '',
+                q7: document.querySelector('input[name="q7"]:checked')?.value || '',
+                q9: document.querySelector('input[name="q9"]:checked')?.value || '',
+                // Essay answers - Question 2
+                q2a: document.querySelector('textarea[name="q2a"]').value.trim(),
+                q2b: document.querySelector('textarea[name="q2b"]').value.trim(),
+                q2c: document.querySelector('textarea[name="q2c"]').value.trim(),
+                // Essay answers - Question 4
+                q4a: document.querySelector('textarea[name="q4a"]').value.trim(),
+                q4b: document.querySelector('textarea[name="q4b"]').value.trim(),
+                q4c: document.querySelector('textarea[name="q4c"]').value.trim(),
+                // Essay answers - Question 6
+                q6a: document.querySelector('textarea[name="q6a"]').value.trim(),
+                q6b: document.querySelector('textarea[name="q6b"]').value.trim(),
+                q6c: document.querySelector('textarea[name="q6c"]').value.trim(),
+                // Essay answers - Question 8
+                q8a: document.querySelector('textarea[name="q8a"]').value.trim(),
+                q8b: document.querySelector('textarea[name="q8b"]').value.trim(),
+                q8c: document.querySelector('textarea[name="q8c"]').value.trim(),
+                // Essay answers - Question 10
+                q10a: document.querySelector('textarea[name="q10a"]').value.trim(),
+                q10b: document.querySelector('textarea[name="q10b"]').value.trim(),
+                q10c: document.querySelector('textarea[name="q10c"]').value.trim()
+            };
+            
+            // UI: Disable button and show loading state
+            const btn = document.getElementById('submitBtn');
+            const originalBtnText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '🔄 ENVIANDO...';
+            
+            // Send data to Google Apps Script via fetch
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Required for GAS web app without CORS issues
+                headers: {
+                    'Content-Type': 'text/plain' // Required for no-cors mode
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Small delay to ensure server processes the request
+                setTimeout(() => {
+                    alert(`✅ Atividade entregue com sucesso!\n\n📋 Aluno: ${payload.studentName}\n📧 Email: ${studentEmail}\n📅 Data: ${date}\n\n✨ Suas respostas foram registradas na planilha "respostas 6ºAno C".\nBom trabalho!`);
+                    
+                    // Reset button state
+                    btn.disabled = false;
+                    btn.textContent = originalBtnText;
+                    
+                    // Optional: Clear form or redirect
+                    // location.reload();
+                }, 1500);
+            })
+            .catch(error => {
+                console.error('Erro ao enviar atividade:', error);
+                alert('❌ Erro de conexão. Verifique sua internet e tente novamente.\n\nSe o problema persistir, contate seu professor.');
+                
+                // Reset button state on error
+                btn.disabled = false;
+                btn.textContent = originalBtnText;
+            });
+        }
+    </script>
+</body>
+</html>
