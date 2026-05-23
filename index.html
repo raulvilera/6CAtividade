@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 50%, #c0c0c0 100%);
             background-attachment: fixed;
-            padding: 20px;
+            padding: clamp(10px, 3vw, 20px);
             min-height: 100vh;
             color: #333;
         }
@@ -24,32 +24,33 @@
             max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.98);
-            padding: 35px;
+            padding: clamp(18px, 4vw, 35px);
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: clamp(20px, 4vw, 35px);
             border-bottom: 4px solid #1e3a8a;
-            padding-bottom: 20px;
+            padding-bottom: clamp(14px, 3vw, 20px);
         }
 
         .school-name {
-            font-size: 26px;
+            font-size: clamp(16px, 4vw, 26px);
             font-weight: 700;
             color: #1e3a8a;
-            margin-bottom: 25px;
+            margin-bottom: clamp(15px, 3vw, 25px);
             text-transform: uppercase;
             letter-spacing: 1px;
+            line-height: 1.3;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 18px;
-            gap: 15px;
+            margin-bottom: clamp(12px, 2.5vw, 18px);
+            gap: clamp(8px, 2vw, 15px);
             flex-wrap: wrap;
         }
 
@@ -58,17 +59,17 @@
             flex-direction: column;
         }
 
-        .info-field.name-field { flex: 0 0 46%; }
-        .info-field.email-field { flex: 0 0 46%; }
-        .info-field.series-field { flex: 0 0 14%; }
-        .info-field.date-field { flex: 0 0 14%; }
+        .info-field.name-field  { flex: 1 1 45%; min-width: 200px; }
+        .info-field.email-field { flex: 1 1 45%; min-width: 200px; }
+        .info-field.series-field { flex: 1 1 120px; min-width: 100px; }
+        .info-field.date-field   { flex: 1 1 140px; min-width: 120px; }
 
         .info-field label {
             display: block;
             font-weight: 600;
             margin-bottom: 6px;
             color: #1e3a8a;
-            font-size: 13px;
+            font-size: clamp(11px, 1.8vw, 13px);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -76,12 +77,21 @@
         .info-field input,
         .info-field select {
             width: 100%;
-            padding: 10px;
+            padding: clamp(8px, 1.5vw, 10px);
             border: 2px solid #cbd5e0;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: clamp(13px, 1.8vw, 14px);
             transition: all 0.3s;
             background: #f8fafc;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .info-field select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
         }
 
         .info-field input:focus,
@@ -93,21 +103,22 @@
         }
 
         .activity-title {
-            font-size: 30px;
+            font-size: clamp(18px, 4.5vw, 30px);
             font-weight: 700;
             color: #1e3a8a;
-            margin: 30px 0 10px;
+            margin: clamp(18px, 3vw, 30px) 0 10px;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            line-height: 1.2;
         }
 
         .class-info {
             text-align: center;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             font-weight: 600;
             color: #166534;
-            margin-bottom: 30px;
+            margin-bottom: clamp(18px, 3vw, 30px);
             padding: 8px 0;
             border-bottom: 2px dashed #166534;
             width: fit-content;
@@ -118,8 +129,8 @@
         .question-card {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #10b981 100%);
             border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 11.34px; /* 3mm exatos */
+            padding: clamp(16px, 3.5vw, 25px);
+            margin-bottom: 11.34px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             color: white;
             transition: transform 0.2s;
@@ -129,20 +140,26 @@
             transform: translateY(-2px);
         }
 
+        @media (hover: none) {
+            .question-card:hover {
+                transform: none;
+            }
+        }
+
         .question-number {
-            font-size: 18px;
+            font-size: clamp(14px, 2.5vw, 18px);
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: clamp(10px, 2vw, 15px);
             background: rgba(255, 255, 255, 0.25);
-            padding: 10px 15px;
+            padding: clamp(8px, 1.5vw, 10px) clamp(10px, 2vw, 15px);
             border-radius: 8px;
             backdrop-filter: blur(5px);
         }
 
         .question-text {
-            font-size: 16px;
+            font-size: clamp(14px, 2.2vw, 16px);
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: clamp(14px, 2.5vw, 20px);
             text-align: justify;
         }
 
@@ -151,31 +168,38 @@
             max-width: 650px;
             height: auto;
             display: block;
-            margin: 20px auto;
+            margin: clamp(12px, 2.5vw, 20px) auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             border: 4px solid rgba(255, 255, 255, 0.6);
         }
 
         .alternatives {
-            margin-top: 15px;
+            margin-top: clamp(10px, 2vw, 15px);
         }
 
         .alternative {
             background: rgba(255, 255, 255, 0.2);
-            padding: 12px 15px;
+            padding: clamp(10px, 2vw, 12px) clamp(12px, 2vw, 15px);
             margin-bottom: 10px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             border: 2px solid transparent;
+            gap: 10px;
         }
 
         .alternative:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: translateX(5px);
+        }
+
+        @media (hover: none) {
+            .alternative:hover {
+                transform: none;
+            }
         }
 
         .alternative.selected {
@@ -185,7 +209,8 @@
         }
 
         .alternative input[type="radio"] {
-            margin-right: 12px;
+            margin-top: 3px;
+            flex-shrink: 0;
             cursor: pointer;
             width: 18px;
             height: 18px;
@@ -195,16 +220,16 @@
         .alternative label {
             cursor: pointer;
             flex: 1;
-            font-size: 15px;
-            line-height: 1.4;
+            font-size: clamp(13px, 2vw, 15px);
+            line-height: 1.5;
         }
 
         .essay-section {
-            margin-top: 20px;
+            margin-top: clamp(14px, 2.5vw, 20px);
         }
 
         .essay-item {
-            margin-bottom: 25px;
+            margin-bottom: clamp(16px, 3vw, 25px);
         }
 
         .essay-label {
@@ -212,11 +237,11 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: white;
-            font-size: 15px;
+            font-size: clamp(13px, 2vw, 15px);
             background: rgba(255,255,255,0.2);
-            padding: 8px 12px;
+            padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2vw, 12px);
             border-radius: 6px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .lined-paper {
@@ -227,7 +252,7 @@
             padding: 15px;
             color: #2d3748;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 14px;
+            font-size: clamp(13px, 1.8vw, 14px);
             line-height: 2;
             resize: vertical;
             width: 100%;
@@ -238,6 +263,7 @@
                 #cbd5e0 32px
             );
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            touch-action: manipulation;
         }
 
         .lined-paper:focus {
@@ -248,18 +274,22 @@
         .submit-btn {
             background: linear-gradient(135deg, #1e3a8a 0%, #10b981 100%);
             color: white;
-            padding: 16px 45px;
+            padding: clamp(13px, 2.5vw, 16px) clamp(28px, 5vw, 45px);
             border: none;
             border-radius: 10px;
-            font-size: 18px;
+            font-size: clamp(15px, 2.5vw, 18px);
             font-weight: 700;
             cursor: pointer;
             display: block;
-            margin: 35px auto 0;
+            margin: clamp(24px, 4vw, 35px) auto 0;
             transition: all 0.3s;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             text-transform: uppercase;
             letter-spacing: 1px;
+            width: 100%;
+            max-width: 400px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
         .submit-btn:hover {
@@ -277,20 +307,42 @@
             transform: none;
         }
 
+        /* ── Responsividade para telas pequenas ── */
+        @media screen and (max-width: 480px) {
+            .info-field.name-field,
+            .info-field.email-field,
+            .info-field.series-field,
+            .info-field.date-field {
+                flex: 0 0 100%;
+                min-width: 0;
+            }
+
+            .info-row {
+                flex-direction: column;
+            }
+
+            .alternative {
+                align-items: flex-start;
+            }
+
+            .question-image {
+                border-width: 2px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .info-field.series-field,
+            .info-field.date-field {
+                flex: 1 1 calc(50% - 8px);
+            }
+        }
+
+        /* ── Print ── */
         @media print {
             body { background: white; padding: 0; }
             .container { box-shadow: none; padding: 20px; max-width: 100%; }
             .question-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
             .submit-btn { display: none; }
-        }
-
-        @media screen and (max-width: 768px) {
-            .info-field.name-field,
-            .info-field.email-field,
-            .info-field.series-field,
-            .info-field.date-field { flex: 0 0 100%; }
-            .container { padding: 20px; }
-            .activity-title { font-size: 24px; }
         }
     </style>
 </head>
@@ -351,7 +403,7 @@
             <div class="class-info">6º Ano C</div>
         </div>
 
-        <!-- Questão 1 - Múltipla Escolha -->
+        <!-- Questão 1 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 1 (Múltipla Escolha)</div>
             <div class="question-text">
@@ -379,17 +431,15 @@
             </div>
         </div>
 
-        <!-- Questão 2 - Dissertativa (Corrigida com campos individuais) -->
+        <!-- Questão 2 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 2 (Dissertativa)</div>
             <div class="question-text">
                 <strong>Ciclo da Água e Evapotranspiração:</strong><br>
                 A Floresta Amazônica desempenha um papel crucial no ciclo da água não apenas do Brasil, mas de toda a América do Sul. Através do processo de evapotranspiração, as árvores da floresta liberam grandes quantidades de vapor de água para a atmosfera, formando os chamados "rios voadores". Esses rios de vapor viajam milhares de quilômetros, levando chuvas para outras regiões do país.<br><br>
-                
                 Com base na imagem e nos estudos sobre o ciclo da água, explique detalhadamente:
             </div>
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/rEnTcKsiCRhXzkgf.webp" alt="Floresta Amazônica e formação de nuvens através da evapotranspiração - rios voadores" class="question-image">
-            
             <div class="essay-section">
                 <div class="essay-item">
                     <label class="essay-label">a) O que é evapotranspiração e como ela difere da evaporação simples?</label>
@@ -406,7 +456,7 @@
             </div>
         </div>
 
-        <!-- Questão 3 - Múltipla Escolha -->
+        <!-- Questão 3 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 3 (Múltipla Escolha)</div>
             <div class="question-text">
@@ -434,17 +484,15 @@
             </div>
         </div>
 
-        <!-- Questão 4 - Dissertativa com campos individuais -->
+        <!-- Questão 4 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 4 (Dissertativa)</div>
             <div class="question-text">
                 <strong>Poluição da Água e Contaminação:</strong><br>
                 O Rio Tietê, que nasce no município de Salesópolis (SP), é um exemplo preocupante de poluição hídrica. A imagem abaixo mostra o contraste entre a nascente preservada do rio e trechos altamente poluídos que atravessam áreas urbanas. A poluição das águas é causada por diferentes fontes: industriais, agrícolas e domésticas.<br><br>
-                
                 Com base na imagem e nos estudos sobre poluição da água, responda:
             </div>
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído mostrando contaminação por esgoto e resíduos em área urbana" class="question-image">
-            
             <div class="essay-section">
                 <div class="essay-item">
                     <label class="essay-label">a) Quais são as principais fontes de contaminação das águas mencionadas e como cada uma delas polui os recursos hídricos?</label>
@@ -461,7 +509,7 @@
             </div>
         </div>
 
-        <!-- Questão 5 - Múltipla Escolha -->
+        <!-- Questão 5 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 5 (Múltipla Escolha)</div>
             <div class="question-text">
@@ -489,17 +537,15 @@
             </div>
         </div>
 
-        <!-- Questão 6 - Dissertativa com campos individuais -->
+        <!-- Questão 6 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 6 (Dissertativa)</div>
             <div class="question-text">
                 <strong>Propriedades da Matéria e Estados Físicos:</strong><br>
                 A matéria pode apresentar-se em diferentes estados físicos (sólido, líquido e gasoso), cada um com propriedades específicas de forma e volume. Observe as imagens abaixo que mostram a mesma substância (água) em diferentes estados físicos.<br><br>
-                
                 Com base nas imagens e nos estudos sobre estados físicos da matéria, explique:
             </div>
             <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/IcRQtHGcbNVixAJQ.jpg" alt="Água em três estados físicos: gelo (sólido), água (líquido) e vapor (gasoso)" class="question-image">
-            
             <div class="essay-section">
                 <div class="essay-item">
                     <label class="essay-label">a) Quais são as características de forma e volume em cada estado físico (sólido, líquido e gasoso)?</label>
@@ -516,7 +562,7 @@
             </div>
         </div>
 
-        <!-- Questão 7 - Múltipla Escolha -->
+        <!-- Questão 7 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 7 (Múltipla Escolha)</div>
             <div class="question-text">
@@ -544,17 +590,15 @@
             </div>
         </div>
 
-        <!-- Questão 8 - Dissertativa com campos individuais -->
+        <!-- Questão 8 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 8 (Dissertativa)</div>
             <div class="question-text">
                 <strong>Água Potável e Acesso Desigual:</strong><br>
                 A imagem abaixo mostra a realidade de diferentes comunidades em relação ao acesso à água potável e saneamento básico. Enquanto algumas regiões possuem tratamento adequado de água e esgoto, outras ainda sofrem com a falta desses serviços essenciais. O Objetivo de Desenvolvimento Sustentável (ODS) 6 da ONU visa "Assegurar a disponibilidade e gestão sustentável da água e saneamento para todas e todos" até 2030.<br><br>
-                
                 Com base na imagem e nos estudos sobre água potável, responda:
             </div>
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY6fkSOBLdAtlXSyJyatGv3lEy9_78uVNN3t5bDl5_lPn3TvaKSjlFfW6H1I0W6kIOcDxmOR6jTyGRlQMklvj45hrBtz1NLtuBNRw0HYn5OaXnDfvOM-HCofhGPvASuWbpilowvpiPRigYdS4s7Nx_cZYBlrMVezUUQW0OEOD6MXHEm0yBlnueazr9JyXZ/s850/ChatGPT%20Image%2023%20de%20mai.%20de%202026,%2014_47_30.png">
-            
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY6fkSOBLdAtlXSyJyatGv3lEy9_78uVNN3t5bDl5_lPn3TvaKSjlFfW6H1I0W6kIOcDxmOR6jTyGRlQMklvj45hrBtz1NLtuBNRw0HYn5OaXnDfvOM-HCofhGPvASuWbpilowvpiPRigYdS4s7Nx_cZYBlrMVezUUQW0OEOD6MXHEm0yBlnueazr9JyXZ/s850/ChatGPT%20Image%2023%20de%20mai.%20de%202026,%2014_47_30.png" alt="Acesso à água potável" class="question-image">
             <div class="essay-section">
                 <div class="essay-item">
                     <label class="essay-label">a) Quais são os principais desafios para garantir o acesso universal à água potável e segura no Brasil e no mundo?</label>
@@ -571,7 +615,7 @@
             </div>
         </div>
 
-        <!-- Questão 9 - Múltipla Escolha -->
+        <!-- Questão 9 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 9 (Múltipla Escolha)</div>
             <div class="question-text">
@@ -599,17 +643,15 @@
             </div>
         </div>
 
-        <!-- Questão 10 - Dissertativa com campos individuais -->
+        <!-- Questão 10 -->
         <div class="question-card">
             <div class="question-number">QUESTÃO 10 (Dissertativa)</div>
             <div class="question-text">
                 <strong>Reciclagem e Preservação dos Recursos Hídricos:</strong><br>
                 A imagem abaixo mostra trabalhadores em um centro de reciclagem separando diferentes tipos de materiais. A reciclagem e a coleta seletiva de resíduos sólidos são ações importantes não apenas para reduzir a quantidade de lixo, mas também para proteger os recursos hídricos.<br><br>
-                
                 Com base na imagem e nos estudos sobre poluição da água, explique:
             </div>
-            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/ZZDIXbqmbfUIrEJu.jpeg" alt="Contraste entre comunidades com e sem acesso à água potável e saneamento básico" class="question-image">
-            
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/ZZDIXbqmbfUIrEJu.jpeg" alt="Trabalhadores em centro de reciclagem separando materiais" class="question-image">
             <div class="essay-section">
                 <div class="essay-item">
                     <label class="essay-label">a) Como o descarte inadequado de lixo pode contaminar rios, lagos e oceanos?</label>
@@ -644,70 +686,66 @@
         document.querySelectorAll('.alternative').forEach(alt => {
             alt.addEventListener('click', function(e) {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
-                
                 const radio = this.querySelector('input[type="radio"]');
                 const questionName = radio.name;
-                
-                // Remove selected class from siblings
                 document.querySelectorAll(`input[name="${questionName}"]`).forEach(r => {
                     r.parentElement.classList.remove('selected');
                 });
-                
-                // Apply selected state
                 radio.checked = true;
                 this.classList.add('selected');
+            });
+        });
+
+        // Also handle radio/label clicks for selected highlight
+        document.querySelectorAll('.alternative input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const questionName = this.name;
+                document.querySelectorAll(`input[name="${questionName}"]`).forEach(r => {
+                    r.parentElement.classList.remove('selected');
+                });
+                this.parentElement.classList.add('selected');
             });
         });
 
         // ============================================
         // ⚠️ INTEGRATION WITH GOOGLE APPS SCRIPT ⚠️
         // ============================================
-        
-        // 🔴 SUBSTITUA ESTA URL PELA URL DO SEU APPS SCRIPT DEPLOYED:
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1tQCKQltTCUZ1uTV93NR2iUXT3uHqLsar34hpBJhVqG4EmohCDUmiLFvZ0-drTypj/exec';
 
         function submitActivity() {
             const studentName = document.getElementById('studentName');
             const studentEmail = document.getElementById('studentEmail').value;
             const date = document.getElementById('date').value;
-            
-            // Validation: student name
+
             if (!studentName.value) {
                 alert('⚠️ Por favor, selecione seu nome no dropdown antes de entregar a atividade.');
                 return;
             }
-            
-            // Validation: date
             if (!date) {
                 alert('⚠️ Por favor, preencha a data antes de entregar a atividade.');
                 return;
             }
-            
-            // Validation: multiple choice questions
+
             const mcQuestions = ['q1', 'q3', 'q5', 'q7', 'q9'];
             let mcComplete = true;
-            
             for (let q of mcQuestions) {
                 if (!document.querySelector(`input[name="${q}"]:checked`)) {
                     mcComplete = false;
                     break;
                 }
             }
-            
             if (!mcComplete) {
                 alert('⚠️ Por favor, responda todas as questões de múltipla escolha antes de entregar.');
                 return;
             }
-            
-            // Validation: essay questions (individual fields a, b, c)
+
             const essayFields = [
-                'q2a', 'q2b', 'q2c',
-                'q4a', 'q4b', 'q4c',
-                'q6a', 'q6b', 'q6c',
-                'q8a', 'q8b', 'q8c',
-                'q10a', 'q10b', 'q10c'
+                'q2a','q2b','q2c',
+                'q4a','q4b','q4c',
+                'q6a','q6b','q6c',
+                'q8a','q8b','q8c',
+                'q10a','q10b','q10c'
             ];
-            
             let essaysComplete = true;
             for (let field of essayFields) {
                 const textarea = document.querySelector(`textarea[name="${field}"]`);
@@ -716,79 +754,59 @@
                     break;
                 }
             }
-            
             if (!essaysComplete) {
                 if (!confirm('⚠️ Algumas questões dissertativas parecem estar incompletas. Deseja continuar mesmo assim?')) {
                     return;
                 }
             }
-            
-            // Prepare data payload for Apps Script
+
             const payload = {
                 studentName: studentName.options[studentName.selectedIndex].text,
-                studentEmail: studentEmail,
-                date: date,
-                // Multiple choice answers
+                studentEmail,
+                date,
                 q1: document.querySelector('input[name="q1"]:checked')?.value || '',
                 q3: document.querySelector('input[name="q3"]:checked')?.value || '',
                 q5: document.querySelector('input[name="q5"]:checked')?.value || '',
                 q7: document.querySelector('input[name="q7"]:checked')?.value || '',
                 q9: document.querySelector('input[name="q9"]:checked')?.value || '',
-                // Essay answers - Question 2
                 q2a: document.querySelector('textarea[name="q2a"]').value.trim(),
                 q2b: document.querySelector('textarea[name="q2b"]').value.trim(),
                 q2c: document.querySelector('textarea[name="q2c"]').value.trim(),
-                // Essay answers - Question 4
                 q4a: document.querySelector('textarea[name="q4a"]').value.trim(),
                 q4b: document.querySelector('textarea[name="q4b"]').value.trim(),
                 q4c: document.querySelector('textarea[name="q4c"]').value.trim(),
-                // Essay answers - Question 6
                 q6a: document.querySelector('textarea[name="q6a"]').value.trim(),
                 q6b: document.querySelector('textarea[name="q6b"]').value.trim(),
                 q6c: document.querySelector('textarea[name="q6c"]').value.trim(),
-                // Essay answers - Question 8
                 q8a: document.querySelector('textarea[name="q8a"]').value.trim(),
                 q8b: document.querySelector('textarea[name="q8b"]').value.trim(),
                 q8c: document.querySelector('textarea[name="q8c"]').value.trim(),
-                // Essay answers - Question 10
                 q10a: document.querySelector('textarea[name="q10a"]').value.trim(),
                 q10b: document.querySelector('textarea[name="q10b"]').value.trim(),
                 q10c: document.querySelector('textarea[name="q10c"]').value.trim()
             };
-            
-            // UI: Disable button and show loading state
+
             const btn = document.getElementById('submitBtn');
             const originalBtnText = btn.textContent;
             btn.disabled = true;
             btn.textContent = '🔄 ENVIANDO...';
-            
-            // Send data to Google Apps Script via fetch
+
             fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Required for GAS web app without CORS issues
-                headers: {
-                    'Content-Type': 'text/plain' // Required for no-cors mode
-                },
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // Small delay to ensure server processes the request
                 setTimeout(() => {
                     alert(`✅ Atividade entregue com sucesso!\n\n📋 Aluno: ${payload.studentName}\n📧 Email: ${studentEmail}\n📅 Data: ${date}\n\n✨ Suas respostas foram registradas na planilha "respostas 6ºAno C".\nBom trabalho!`);
-                    
-                    // Reset button state
                     btn.disabled = false;
                     btn.textContent = originalBtnText;
-                    
-                    // Optional: Clear form or redirect
-                    // location.reload();
                 }, 1500);
             })
             .catch(error => {
                 console.error('Erro ao enviar atividade:', error);
                 alert('❌ Erro de conexão. Verifique sua internet e tente novamente.\n\nSe o problema persistir, contate seu professor.');
-                
-                // Reset button state on error
                 btn.disabled = false;
                 btn.textContent = originalBtnText;
             });
