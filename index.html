@@ -248,7 +248,7 @@
 <!-- Lightbox -->
 <div id="lightbox">
     <span id="lightbox-close" title="Fechar">&#x2715;</span>
-    <img id="lightbox-img" src="" alt="Imagem ampliada">
+    <img id="lightbox-img" src="" alt="Imagem ampliada" title="Clique duplo para ampliar">
 </div>
 
 <script>
@@ -301,7 +301,7 @@ window.addEventListener("blur", () => { if (document.visibilityState === "visibl
     const lbClose = document.getElementById("lightbox-close");
     function open(src) { lbImg.src = src; lb.classList.add("active"); document.body.style.overflow = "hidden"; }
     function close()   { lb.classList.remove("active"); document.body.style.overflow = ""; setTimeout(() => { lbImg.src = ""; }, 300); }
-    document.addEventListener("click", e => { if (e.target.classList.contains("question-image")) open(e.target.src); });
+    document.addEventListener("dblclick", e => { if (e.target.classList.contains("question-image")) open(e.target.src); });
     lb.addEventListener("click", e => { if (e.target === lb || e.target === lbClose) close(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
 })();
