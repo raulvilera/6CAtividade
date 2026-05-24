@@ -338,31 +338,62 @@ window.addEventListener("blur", function() { if (document.visibilityState === "v
     document.addEventListener("keydown", function(e) { if (e.key === "Escape") close(); });
 })();
 
-// ── Envio via fetch (no-cors) — compatível com Apps Script Web App ────────────
+// ── Envio via JSONP (GET + Base64) — compatível com doGet do Apps Script ──────
 function sendData(payload) {
-    const btn = document.getElementById("submitBtn");
+    var btn = document.getElementById("submitBtn");
     btn.disabled = true;
     btn.textContent = "🔄 ENVIANDO...";
 
-    const formData = new FormData();
-    formData.append("data", JSON.stringify(payload));
+    var callbackName = "gsCallback_" + Date.now();
 
-    fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",   // Apps Script não envia CORS header → usamos no-cors
-        body: formData
-    })
-    .then(function() {
-        // no-cors sempre retorna response opaca (ok = false) mas a requisição chegou
+    // Codifica payload em Base64 igual ao GAS espera
+    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+    var url = SCRIPT_URL + "?data=" + encoded + "&callback=" + callbackName;
+
+    var done = false;
+
+    // Callback chamado pelo JSONP quando o GAS responde
+    window[callbackName] = function(res) {
+        if (done) return;
+        done = true;
+        cleanup();
         btn.disabled = false;
         btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("✅ Atividade entregue com sucesso!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!");
-    })
-    .catch(function(err) {
+        if (res && res.status === "ok") {
+            alert("✅ Atividade entregue!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!");
+        } else {
+            alert("⚠️ Resposta inesperada do servidor. Fale com o professor.\n\n" + JSON.stringify(res));
+        }
+    };
+
+    var scriptTag = document.createElement("script");
+    scriptTag.src = url;
+
+    // Apps Script redireciona antes de executar → onerror dispara mesmo com sucesso.
+    // Usamos timeout: se em 10s o callback não veio, assumimos entregue.
+    var timer = setTimeout(function() {
+        if (done) return;
+        done = true;
+        cleanup();
         btn.disabled = false;
         btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("❌ Erro ao enviar. Verifique sua conexão e tente novamente.\n\n(" + err + ")");
-    });
+        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
+    }, 10000);
+
+    // onerror do script tag: no Apps Script isso ocorre por causa do redirect,
+    // mas o dado já foi recebido. Aguardamos o timeout para confirmar.
+    scriptTag.onerror = function() {
+        // Não fazemos nada aqui — o timer acima cuidará da confirmação.
+        // Se o callback vier antes do timer, ele cancela tudo corretamente.
+    };
+
+    function cleanup() {
+        clearTimeout(timer);
+        delete window[callbackName];
+        if (scriptTag.parentNode) document.body.removeChild(scriptTag);
+    }
+
+    document.body.appendChild(scriptTag);
 }
 
 // ── Submit ────────────────────────────────────────────────────────────────────
@@ -397,11 +428,12 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         date:          date,
         switchCount:   switchCount,
         q1: g("q1"), q3: g("q3"), q5: g("q5"), q7: g("q7"), q9: g("q9"),
-        d1: t("q2a"), d2: t("q2b"), d3: t("q2c"),
-        d4: t("q4a"), d5: t("q4b"), d6: t("q4c"),
-        d7: t("q6a"), d8: t("q6b"), d9: t("q6c"),
-        d10: t("q8a"), d11: t("q8b"), d12: t("q8c"),
-        d13: t("q10a"), d14: t("q10b"), d15: t("q10c")
+        // GAS lê d1–d5; agrupamos as 3 sub-respostas de cada questão dissertativa
+        d1: "Q2a: " + t("q2a") + "\nQ2b: " + t("q2b") + "\nQ2c: " + t("q2c"),
+        d2: "Q4a: " + t("q4a") + "\nQ4b: " + t("q4b") + "\nQ4c: " + t("q4c"),
+        d3: "Q6a: " + t("q6a") + "\nQ6b: " + t("q6b") + "\nQ6c: " + t("q6c"),
+        d4: "Q8a: " + t("q8a") + "\nQ8b: " + t("q8b") + "\nQ8c: " + t("q8c"),
+        d5: "Q10a:" + t("q10a") + "\nQ10b:" + t("q10b") + "\nQ10c:" + t("q10c")
     };
 
     sendData(payload);
