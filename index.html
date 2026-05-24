@@ -306,6 +306,27 @@
 // ── URL do Apps Script ────────────────────────────────────────────────────────
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyERmYA0s2pKTrz47WrXoP52JVcfZL0pnJwyTwBdC_rpfzi5e3xx24pXfZTSUnAEuZB/exec";
 
+// ── Gabarito e funções globais ─────────────────────────────────────────────────
+var GABARITO_LOCAL = { q1:"D", q3:"A", q5:"C", q7:"A", q9:"D" };
+var QUESTOES_OBJ   = ["q1","q3","q5","q7","q9"];
+
+// Retorna letra marcada pelo aluno (global — usada por Corrigir e Entregar)
+function getResposta(n) {
+    var r = document.querySelector('input[name="' + n + '"]:checked');
+    return r ? r.value : "";
+}
+// Retorna texto de textarea
+function getTexto(n) {
+    var el = document.querySelector('textarea[name="' + n + '"]');
+    return el ? el.value.trim() : "";
+}
+// Conta acertos com base no gabarito global
+function calcAcertos() {
+    var ac = 0;
+    QUESTOES_OBJ.forEach(function(q) { if (getResposta(q) === GABARITO_LOCAL[q]) ac++; });
+    return ac;
+}
+
 // ── Inicialização ─────────────────────────────────────────────────────────────
 document.getElementById("date").valueAsDate = new Date();
 
@@ -435,15 +456,9 @@ document.getElementById("submitBtn").addEventListener("click", function() {
     }
     if (incomplete && !confirm("⚠️ Algumas dissertativas parecem incompletas. Deseja continuar?")) return;
 
-    var g = function(n) { var r = document.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ""; };
-    var t = function(n) { var el = document.querySelector('textarea[name="' + n + '"]'); return el ? el.value.trim() : ""; };
-
-    // Gabarito local (D, A, C, A, D)
-    var GABARITO_LOCAL = { q1:"D", q3:"A", q5:"C", q7:"A", q9:"D" };
-    var questoesObj = ["q1","q3","q5","q7","q9"];
-    var acertos = 0;
-    questoesObj.forEach(function(q) { if (g(q) === GABARITO_LOCAL[q]) acertos++; });
-    var percentual = Math.round((acertos / questoesObj.length) * 100);
+    // Calcula acertos usando funções e gabarito globais
+    var acertos  = calcAcertos();
+    var nota10   = Math.round((acertos / QUESTOES_OBJ.length) * 10 * 10) / 10;
 
     var payload = {
         sheetName:     "Respostas 6ºAno C",
@@ -453,14 +468,14 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         date:          date,
         switchCount:   switchCount,
         correct:       acertos,
-        percentage:    percentual,
-        q1: g("q1"), q3: g("q3"), q5: g("q5"), q7: g("q7"), q9: g("q9"),
+        percentage:    nota10,
+        q1: getResposta("q1"), q3: getResposta("q3"), q5: getResposta("q5"), q7: getResposta("q7"), q9: getResposta("q9"),
         // GAS lê d1–d5; agrupamos as 3 sub-respostas de cada questão dissertativa
-        d1: "Q2a: " + t("q2a") + "\nQ2b: " + t("q2b") + "\nQ2c: " + t("q2c"),
-        d2: "Q4a: " + t("q4a") + "\nQ4b: " + t("q4b") + "\nQ4c: " + t("q4c"),
-        d3: "Q6a: " + t("q6a") + "\nQ6b: " + t("q6b") + "\nQ6c: " + t("q6c"),
-        d4: "Q8a: " + t("q8a") + "\nQ8b: " + t("q8b") + "\nQ8c: " + t("q8c"),
-        d5: "Q10a:" + t("q10a") + "\nQ10b:" + t("q10b") + "\nQ10c:" + t("q10c")
+        d1: "Q2a: " + getTexto("q2a") + "\nQ2b: " + getTexto("q2b") + "\nQ2c: " + getTexto("q2c"),
+        d2: "Q4a: " + getTexto("q4a") + "\nQ4b: " + getTexto("q4b") + "\nQ4c: " + getTexto("q4c"),
+        d3: "Q6a: " + getTexto("q6a") + "\nQ6b: " + getTexto("q6b") + "\nQ6c: " + getTexto("q6c"),
+        d4: "Q8a: " + getTexto("q8a") + "\nQ8b: " + getTexto("q8b") + "\nQ8c: " + getTexto("q8c"),
+        d5: "Q10a: " + getTexto("q10a") + "\nQ10b: " + getTexto("q10b") + "\nQ10c: " + getTexto("q10c")
     };
 
     sendData(payload);
@@ -468,19 +483,16 @@ document.getElementById("submitBtn").addEventListener("click", function() {
 
 // ── Correção instantânea ──────────────────────────────────────────────────────
 document.getElementById("corrigirBtn").addEventListener("click", function() {
-    var GABARITO_LOCAL = { q1:"D", q3:"A", q5:"C", q7:"A", q9:"D" };
-    var questoesObj = ["q1","q3","q5","q7","q9"];
     var labels = {
         q1: "Questão 1", q3: "Questão 3", q5: "Questão 5",
         q7: "Questão 7", q9: "Questão 9"
     };
-    var g = function(n) { var r = document.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ""; };
 
     var acertos = 0;
     var html = "";
 
-    questoesObj.forEach(function(q) {
-        var resp = g(q);
+    QUESTOES_OBJ.forEach(function(q) {
+        var resp = getResposta(q);
         var gab  = GABARITO_LOCAL[q];
         if (!resp) {
             html += '<div class="result-item errado">⚠️ ' + labels[q] + ' — não respondida</div>';
@@ -494,7 +506,7 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
         }
     });
 
-    var nota = (acertos / questoesObj.length) * 10;
+    var nota = (acertos / QUESTOES_OBJ.length) * 10;
     var aprovado = nota >= 5;
 
     var panel  = document.getElementById("resultPanel");
@@ -506,7 +518,7 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
         : "linear-gradient(135deg,#991b1b,#ef4444)";
 
     header.innerHTML =
-        '<div class="result-score">' + acertos + '/' + questoesObj.length + ' acertos — Nota: ' + nota.toFixed(1) + '</div>' +
+        '<div class="result-score">' + acertos + '/' + QUESTOES_OBJ.length + ' acertos — Nota: ' + nota.toFixed(1) + '</div>' +
         '<div class="result-sub">' + (aprovado ? "✅ Aprovado nas objetivas!" : "❌ Abaixo da média nas objetivas") + '</div>';
 
     body.innerHTML = html +
