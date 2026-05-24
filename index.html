@@ -33,12 +33,45 @@
         .question-image{width:100%;max-width:650px;height:auto;display:block;margin:clamp(12px,2.5vw,20px) auto;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.3);border:4px solid rgba(255,255,255,.6);cursor:zoom-in;transition:transform .2s,box-shadow .2s}
         .question-image:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,.4)}
         .alternatives{margin-top:clamp(10px,2vw,15px)}
-        .alternative{background:rgba(255,255,255,.2);padding:clamp(10px,2vw,12px) clamp(12px,2vw,15px);margin-bottom:10px;border-radius:8px;cursor:pointer;transition:all .3s;display:flex;align-items:flex-start;border:2px solid transparent;gap:10px}
-        .alternative:hover{background:rgba(255,255,255,.3);transform:translateX(5px)}
-        @keyframes toggleColor{0%,49%{background:#1a5f2a!important;border-color:#2ecc71}50%,100%{background:rgba(41,128,185,.85)!important;border-color:#2980b9}}
-        .alternative.selected{animation:toggleColor 1.4s ease-in-out infinite;border-width:2px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-        .alternative input[type="radio"]{margin-top:3px;flex-shrink:0;cursor:pointer;width:18px;height:18px;accent-color:#1a5f2a}
-        .alternative label{cursor:pointer;flex:1;font-size:clamp(13px,2vw,15px);line-height:1.5}
+
+        /* ── ALTERNATIVA: clique em qualquer ponto da div ── */
+        .alternative{
+            background:rgba(255,255,255,.2);
+            padding:clamp(10px,2vw,14px) clamp(12px,2vw,16px);
+            margin-bottom:10px;
+            border-radius:8px;
+            cursor:pointer;
+            transition:all .3s;
+            display:flex;
+            align-items:center;
+            border:2px solid transparent;
+            gap:12px;
+            user-select:none;
+        }
+        .alternative:hover{background:rgba(255,255,255,.35);transform:translateX(5px)}
+
+        /* Radio escondido mas acessível */
+        .alternative input[type="radio"]{
+            appearance:none;
+            -webkit-appearance:none;
+            width:20px;height:20px;
+            min-width:20px;
+            border-radius:50%;
+            border:2px solid rgba(255,255,255,.8);
+            background:rgba(255,255,255,.15);
+            cursor:pointer;
+            transition:all .25s;
+            flex-shrink:0;
+        }
+        .alternative input[type="radio"]:checked{
+            background:#2ecc71;
+            border-color:#fff;
+            box-shadow:0 0 0 3px rgba(46,204,113,.5);
+        }
+        .alternative label{cursor:pointer;flex:1;font-size:clamp(13px,2vw,15px);line-height:1.5;pointer-events:none}
+
+        .alternative.selected{background:#1a5f2a!important;border-color:#2ecc71;border-width:2px;box-shadow:0 2px 10px rgba(46,204,113,.4)}
+
         .essay-section{margin-top:clamp(14px,2.5vw,20px)}
         .essay-item{margin-bottom:clamp(16px,3vw,25px)}
         .essay-label{display:block;font-weight:600;margin-bottom:8px;color:white;font-size:clamp(13px,2vw,15px);background:rgba(255,255,255,.2);padding:clamp(6px,1.5vw,8px) clamp(10px,2vw,12px);border-radius:6px;line-height:1.5}
@@ -123,10 +156,10 @@
         <div class="question-text"><strong>Estados Físicos da Água:</strong><br>Em qual estado físico a água se encontra nas geleiras e icebergs, e qual mudança de estado ocorre quando um cubo de gelo derrete em temperatura ambiente?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/pmzTUDwfxtFureJx.jpg" alt="Estados físicos da água" class="question-image">
         <div class="alternatives">
-            <div class="alternative"><input type="radio" name="q1" value="A"><label>A) Estado líquido; fusão (derretimento)</label></div>
-            <div class="alternative"><input type="radio" name="q1" value="B"><label>B) Estado sólido; fusão (derretimento)</label></div>
-            <div class="alternative"><input type="radio" name="q1" value="C"><label>C) Estado gasoso; condensação</label></div>
-            <div class="alternative"><input type="radio" name="q1" value="D"><label>D) Estado sólido; solidificação</label></div>
+            <div class="alternative" data-name="q1" data-value="A"><input type="radio" name="q1" value="A"><label>A) Estado líquido; fusão (derretimento)</label></div>
+            <div class="alternative" data-name="q1" data-value="B"><input type="radio" name="q1" value="B"><label>B) Estado sólido; fusão (derretimento)</label></div>
+            <div class="alternative" data-name="q1" data-value="C"><input type="radio" name="q1" value="C"><label>C) Estado gasoso; condensação</label></div>
+            <div class="alternative" data-name="q1" data-value="D"><input type="radio" name="q1" value="D"><label>D) Estado sólido; solidificação</label></div>
         </div>
     </div>
 
@@ -148,10 +181,10 @@
         <div class="question-text"><strong>Distribuição da Água no Planeta:</strong><br>Qual a porcentagem de água doce disponível e por que a maior parte é de difícil acesso?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/WFQfHNMsPCsHfsoL.jpg" alt="Distribuição da água" class="question-image">
         <div class="alternatives">
-            <div class="alternative"><input type="radio" name="q3" value="A"><label>A) 97,5% é água doce; está toda em rios e lagos de fácil acesso</label></div>
-            <div class="alternative"><input type="radio" name="q3" value="B"><label>B) 2,5% é água doce; 69% está concentrada em geleiras de difícil acesso</label></div>
-            <div class="alternative"><input type="radio" name="q3" value="C"><label>C) 50% é água doce; distribuída igualmente em oceanos e rios</label></div>
-            <div class="alternative"><input type="radio" name="q3" value="D"><label>D) 10% é água doce; está toda em aquíferos subterrâneos</label></div>
+            <div class="alternative" data-name="q3" data-value="A"><input type="radio" name="q3" value="A"><label>A) 97,5% é água doce; está toda em rios e lagos de fácil acesso</label></div>
+            <div class="alternative" data-name="q3" data-value="B"><input type="radio" name="q3" value="B"><label>B) 2,5% é água doce; 69% está concentrada em geleiras de difícil acesso</label></div>
+            <div class="alternative" data-name="q3" data-value="C"><input type="radio" name="q3" value="C"><label>C) 50% é água doce; distribuída igualmente em oceanos e rios</label></div>
+            <div class="alternative" data-name="q3" data-value="D"><input type="radio" name="q3" value="D"><label>D) 10% é água doce; está toda em aquíferos subterrâneos</label></div>
         </div>
     </div>
 
@@ -173,10 +206,10 @@
         <div class="question-text"><strong>Biosfera e Ecossistema:</strong><br>Identifique corretamente a relação entre componentes bióticos e abióticos:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/EWOGJoNcFXwCwPtM.jpg" alt="Ecossistema" class="question-image">
         <div class="alternatives">
-            <div class="alternative"><input type="radio" name="q5" value="A"><label>A) Bióticos: água, solo, luz solar; Abióticos: plantas, animais</label></div>
-            <div class="alternative"><input type="radio" name="q5" value="B"><label>B) Bióticos: plantas, animais, seres humanos; Abióticos: água, solo, luz solar, ar</label></div>
-            <div class="alternative"><input type="radio" name="q5" value="C"><label>C) Bióticos: apenas animais; Abióticos: apenas plantas</label></div>
-            <div class="alternative"><input type="radio" name="q5" value="D"><label>D) Bióticos: rochas e minerais; Abióticos: seres vivos</label></div>
+            <div class="alternative" data-name="q5" data-value="A"><input type="radio" name="q5" value="A"><label>A) Bióticos: água, solo, luz solar; Abióticos: plantas, animais</label></div>
+            <div class="alternative" data-name="q5" data-value="B"><input type="radio" name="q5" value="B"><label>B) Bióticos: plantas, animais, seres humanos; Abióticos: água, solo, luz solar, ar</label></div>
+            <div class="alternative" data-name="q5" data-value="C"><input type="radio" name="q5" value="C"><label>C) Bióticos: apenas animais; Abióticos: apenas plantas</label></div>
+            <div class="alternative" data-name="q5" data-value="D"><input type="radio" name="q5" value="D"><label>D) Bióticos: rochas e minerais; Abióticos: seres vivos</label></div>
         </div>
     </div>
 
@@ -198,10 +231,10 @@
         <div class="question-text"><strong>Ciclo da Água — Formação das Chuvas:</strong><br>Quando o vapor d'água sobe e encontra temperaturas baixas, forma nuvens. Qual o nome desse processo e que mudança de estado representa?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/YACQQjpmxRemiPtY.png" alt="Ciclo da água" class="question-image">
         <div class="alternatives">
-            <div class="alternative"><input type="radio" name="q7" value="A"><label>A) Evaporação; mudança do estado líquido para o gasoso</label></div>
-            <div class="alternative"><input type="radio" name="q7" value="B"><label>B) Condensação; mudança do estado gasoso para o líquido</label></div>
-            <div class="alternative"><input type="radio" name="q7" value="C"><label>C) Solidificação; mudança do estado líquido para o sólido</label></div>
-            <div class="alternative"><input type="radio" name="q7" value="D"><label>D) Sublimação; mudança direta do sólido para o gasoso</label></div>
+            <div class="alternative" data-name="q7" data-value="A"><input type="radio" name="q7" value="A"><label>A) Evaporação; mudança do estado líquido para o gasoso</label></div>
+            <div class="alternative" data-name="q7" data-value="B"><input type="radio" name="q7" value="B"><label>B) Condensação; mudança do estado gasoso para o líquido</label></div>
+            <div class="alternative" data-name="q7" data-value="C"><input type="radio" name="q7" value="C"><label>C) Solidificação; mudança do estado líquido para o sólido</label></div>
+            <div class="alternative" data-name="q7" data-value="D"><input type="radio" name="q7" value="D"><label>D) Sublimação; mudança direta do sólido para o gasoso</label></div>
         </div>
     </div>
 
@@ -223,10 +256,10 @@
         <div class="question-text"><strong>Lençóis Freáticos:</strong><br>O que acontece em áreas com solo impermeabilizado quando chove intensamente?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/QttvhoNxsBMgIBbh.jpg" alt="Lençol freático" class="question-image">
         <div class="alternatives">
-            <div class="alternative"><input type="radio" name="q9" value="A"><label>A) A água infiltra mais rápido, abastecendo os lençóis freáticos</label></div>
-            <div class="alternative"><input type="radio" name="q9" value="B"><label>B) A água não penetra no solo, causando enchentes e alagamentos</label></div>
-            <div class="alternative"><input type="radio" name="q9" value="C"><label>C) A água evapora imediatamente, sem causar problemas</label></div>
-            <div class="alternative"><input type="radio" name="q9" value="D"><label>D) A água é absorvida pelas raízes, mesmo sem vegetação</label></div>
+            <div class="alternative" data-name="q9" data-value="A"><input type="radio" name="q9" value="A"><label>A) A água infiltra mais rápido, abastecendo os lençóis freáticos</label></div>
+            <div class="alternative" data-name="q9" data-value="B"><input type="radio" name="q9" value="B"><label>B) A água não penetra no solo, causando enchentes e alagamentos</label></div>
+            <div class="alternative" data-name="q9" data-value="C"><input type="radio" name="q9" value="C"><label>C) A água evapora imediatamente, sem causar problemas</label></div>
+            <div class="alternative" data-name="q9" data-value="D"><input type="radio" name="q9" value="D"><label>D) A água é absorvida pelas raízes, mesmo sem vegetação</label></div>
         </div>
     </div>
 
@@ -248,38 +281,37 @@
 <!-- Lightbox -->
 <div id="lightbox">
     <span id="lightbox-close" title="Fechar">&#x2715;</span>
-    <img id="lightbox-img" src="" alt="Imagem ampliada" title="Clique duplo para ampliar">
+    <img id="lightbox-img" src="" alt="Imagem ampliada">
 </div>
 
 <script>
-// ── URL Universal ────────────────────────────────────────────────────────────
+// ── URL do Apps Script ────────────────────────────────────────────────────────
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyERmYA0s2pKTrz47WrXoP52JVcfZL0pnJwyTwBdC_rpfzi5e3xx24pXfZTSUnAEuZB/exec";
 
-// ── Inicialização ────────────────────────────────────────────────────────────
+// ── Inicialização ─────────────────────────────────────────────────────────────
 document.getElementById("date").valueAsDate = new Date();
 
 document.getElementById("studentName").addEventListener("change", function() {
     document.getElementById("studentNumber").value = this.value || "—";
 });
 
-// ── Seleção de alternativas (animação verde ↔ azul) ──────────────────────────
-document.querySelectorAll(".alternative").forEach(alt => {
-    alt.addEventListener("click", function(e) {
-        if (e.target.tagName === "INPUT" || e.target.tagName === "LABEL") return;
-        const radio = this.querySelector("input[type='radio']");
-        document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => r.parentElement.classList.remove("selected"));
-        radio.checked = true;
+// ── Seleção de alternativas — clique em QUALQUER parte da div ─────────────────
+document.querySelectorAll(".alternative").forEach(function(alt) {
+    alt.addEventListener("click", function() {
+        const name  = this.dataset.name;
+        const value = this.dataset.value;
+        // desmarca todas do mesmo grupo
+        document.querySelectorAll('.alternative[data-name="' + name + '"]').forEach(function(a) {
+            a.classList.remove("selected");
+            a.querySelector("input[type='radio']").checked = false;
+        });
+        // marca esta
+        this.querySelector("input[type='radio']").checked = true;
         this.classList.add("selected");
     });
 });
-document.querySelectorAll(".alternative input[type='radio']").forEach(radio => {
-    radio.addEventListener("change", function() {
-        document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => r.parentElement.classList.remove("selected"));
-        this.parentElement.classList.add("selected");
-    });
-});
 
-// ── Monitor de troca de aba/tela ─────────────────────────────────────────────
+// ── Monitor de troca de aba/tela ──────────────────────────────────────────────
 let switchCount = 0;
 const banner = document.getElementById("monitorBanner");
 const logDiv  = document.getElementById("monitorLog");
@@ -289,47 +321,48 @@ function recordSwitch(reason) {
     banner.textContent = "⚠️ ALERTA: " + reason + " — ocorrência nº " + switchCount + " às " + ts;
     banner.style.display = "block";
     logDiv.textContent = "Saídas de tela registradas: " + switchCount;
-    setTimeout(() => { banner.style.display = "none"; }, 5000);
+    setTimeout(function() { banner.style.display = "none"; }, 5000);
 }
-document.addEventListener("visibilitychange", () => { if (document.hidden) recordSwitch("Troca de aba"); });
-window.addEventListener("blur", () => { if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); });
+document.addEventListener("visibilitychange", function() { if (document.hidden) recordSwitch("Troca de aba"); });
+window.addEventListener("blur", function() { if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); });
 
-// ── Lightbox ─────────────────────────────────────────────────────────────────
+// ── Lightbox ──────────────────────────────────────────────────────────────────
 (function() {
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-img");
     const lbClose = document.getElementById("lightbox-close");
     function open(src) { lbImg.src = src; lb.classList.add("active"); document.body.style.overflow = "hidden"; }
-    function close()   { lb.classList.remove("active"); document.body.style.overflow = ""; setTimeout(() => { lbImg.src = ""; }, 300); }
-    document.addEventListener("dblclick", e => { if (e.target.classList.contains("question-image")) open(e.target.src); });
-    lb.addEventListener("click", e => { if (e.target === lb || e.target === lbClose) close(); });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+    function close()   { lb.classList.remove("active"); document.body.style.overflow = ""; setTimeout(function() { lbImg.src = ""; }, 300); }
+    document.addEventListener("dblclick", function(e) { if (e.target.classList.contains("question-image")) open(e.target.src); });
+    lb.addEventListener("click", function(e) { if (e.target === lb || e.target === lbClose) close(); });
+    document.addEventListener("keydown", function(e) { if (e.key === "Escape") close(); });
 })();
 
-// ── JSONP ────────────────────────────────────────────────────────────────────
-function sendJSONP(data) {
-    const callbackName = "gsCallback_" + Date.now();
-    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
-    const url = SCRIPT_URL + "?data=" + encoded + "&callback=" + callbackName;
+// ── Envio via fetch (no-cors) — compatível com Apps Script Web App ────────────
+function sendData(payload) {
     const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.textContent = "🔄 ENVIANDO...";
 
-    window[callbackName] = function(res) {
-        delete window[callbackName];
-        document.body.removeChild(scriptTag);
-        btn.disabled = false; btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("✅ Atividade entregue!\n\n📋 " + data.studentName + "\n📅 " + data.date + "\n\nBom trabalho!");
-    };
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(payload));
 
-    const scriptTag = document.createElement("script");
-    scriptTag.src = url;
-    scriptTag.onerror = function() {
-        delete window[callbackName];
-        document.body.removeChild(scriptTag);
-        btn.disabled = false; btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("❌ Erro de conexão. Verifique sua internet e tente novamente.");
-    };
-    document.body.appendChild(scriptTag);
-    btn.disabled = true; btn.textContent = "🔄 ENVIANDO...";
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",   // Apps Script não envia CORS header → usamos no-cors
+        body: formData
+    })
+    .then(function() {
+        // no-cors sempre retorna response opaca (ok = false) mas a requisição chegou
+        btn.disabled = false;
+        btn.textContent = "ENTREGAR ATIVIDADE";
+        alert("✅ Atividade entregue com sucesso!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!");
+    })
+    .catch(function(err) {
+        btn.disabled = false;
+        btn.textContent = "ENTREGAR ATIVIDADE";
+        alert("❌ Erro ao enviar. Verifique sua conexão e tente novamente.\n\n(" + err + ")");
+    });
 }
 
 // ── Submit ────────────────────────────────────────────────────────────────────
@@ -340,23 +373,23 @@ document.getElementById("submitBtn").addEventListener("click", function() {
     if (!sel.value) { alert("⚠️ Selecione seu nome antes de entregar."); return; }
     if (!date)      { alert("⚠️ Preencha a data antes de entregar."); return; }
 
-    for (const q of ["q1","q3","q5","q7","q9"]) {
-        if (!document.querySelector(`input[name="${q}"]:checked`)) {
+    for (var q of ["q1","q3","q5","q7","q9"]) {
+        if (!document.querySelector('input[name="' + q + '"]:checked')) {
             alert("⚠️ Responda todas as questões de múltipla escolha."); return;
         }
     }
 
-    let incomplete = false;
-    for (const f of ["q2a","q2b","q2c","q4a","q4b","q4c","q6a","q6b","q6c","q8a","q8b","q8c","q10a","q10b","q10c"]) {
-        const el = document.querySelector(`textarea[name="${f}"]`);
+    var incomplete = false;
+    for (var f of ["q2a","q2b","q2c","q4a","q4b","q4c","q6a","q6b","q6c","q8a","q8b","q8c","q10a","q10b","q10c"]) {
+        var el = document.querySelector('textarea[name="' + f + '"]');
         if (el && el.value.trim().length < 10) { incomplete = true; break; }
     }
     if (incomplete && !confirm("⚠️ Algumas dissertativas parecem incompletas. Deseja continuar?")) return;
 
-    const g = (n) => document.querySelector(`input[name="${n}"]:checked`)?.value || "";
-    const t = (n) => document.querySelector(`textarea[name="${n}"]`).value.trim();
+    var g = function(n) { var r = document.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ""; };
+    var t = function(n) { var el = document.querySelector('textarea[name="' + n + '"]'); return el ? el.value.trim() : ""; };
 
-    const payload = {
+    var payload = {
         sheetName:     "Respostas 6ºAno C",
         studentName:   sel.options[sel.selectedIndex].text,
         studentNumber: sel.value,
@@ -371,7 +404,7 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         d13: t("q10a"), d14: t("q10b"), d15: t("q10c")
     };
 
-    sendJSONP(payload);
+    sendData(payload);
 });
 </script>
 </body>
