@@ -20,14 +20,12 @@
         .info-field.series-field{flex:0 0 110px;min-width:90px}
         .info-field.date-field{flex:0 0 130px;min-width:110px}
         .info-field label{display:block;font-weight:600;margin-bottom:6px;color:#1e3a8a;font-size:clamp(11px,1.8vw,13px);text-transform:uppercase;letter-spacing:.5px}
-        .info-field input,.info-field select{width:100%;padding:clamp(7px,1.5vw,9px);border:2px solid #cbd5e0;border-radius:6px;font-size:clamp(12px,1.8vw,14px);transition:all .3s;background:#f8fafc;-webkit-appearance:none;appearance:none}
-        .info-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e3a8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+        .info-field input,.info-field select{width:100%;padding:clamp(7px,1.5vw,9px);border:2px solid #cbd5e0;border-radius:6px;font-size:clamp(12px,1.8vw,14px);transition:all .3s;background:#f8fafc}
         .info-field input:focus,.info-field select:focus{outline:none;border-color:#3b82f6;background:white;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
         .activity-title{font-size:clamp(18px,4.5vw,30px);font-weight:700;color:#1e3a8a;margin:clamp(18px,3vw,30px) 0 10px;text-align:center;text-transform:uppercase;letter-spacing:1.5px;line-height:1.2}
         .class-info{text-align:center;font-size:clamp(16px,3vw,20px);font-weight:600;color:#166534;margin-bottom:clamp(18px,3vw,30px);padding:8px 0;border-bottom:2px dashed #166534;width:fit-content;margin-left:auto;margin-right:auto}
         
-        /* Badge de habilidades */
-        .skills-badge{display:inline-flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px;padding:6px 10px;background:rgba(255,255,255,0.25);border-radius:8px;font-size:clamp(10px,1.6vw,12px);backdrop-filter:blur(5px)}
+        .skills-badge{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px;padding:6px 10px;background:rgba(255,255,255,0.25);border-radius:8px;font-size:clamp(10px,1.6vw,12px)}
         .skill-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-weight:600;background:rgba(255,255,255,0.3)}
         .skill-tag.ae{background:#fbbf24;color:#78350f}
         .skill-tag.hab{background:#60a5fa;color:#1e3a8a}
@@ -37,45 +35,40 @@
         .question-card{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 50%,#10b981 100%);border-radius:12px;padding:clamp(16px,3.5vw,25px);margin-bottom:12px;box-shadow:0 6px 12px rgba(0,0,0,.2);color:white;transition:transform .2s;overflow:hidden}
         .question-card:hover{transform:translateY(-2px)}
         .question-card::after{content:'';display:block;height:5px;background:linear-gradient(90deg,rgba(255,255,255,.4),rgba(255,255,255,.1));border-radius:0 0 12px 12px;margin-top:14px}
-        .question-number{font-size:clamp(14px,2.5vw,18px);font-weight:700;margin-bottom:clamp(10px,2vw,15px);background:rgba(255,255,255,.25);padding:clamp(8px,1.5vw,10px) clamp(10px,2vw,15px);border-radius:8px;backdrop-filter:blur(5px)}
+        .question-number{font-size:clamp(14px,2.5vw,18px);font-weight:700;margin-bottom:clamp(10px,2vw,15px);background:rgba(255,255,255,.25);padding:clamp(8px,1.5vw,10px) clamp(10px,2vw,15px);border-radius:8px}
         .question-text{font-size:clamp(14px,2.2vw,16px);line-height:1.7;margin-bottom:clamp(14px,2.5vw,20px);text-align:justify}
-        .question-image{width:100%;max-width:650px;height:auto;display:block;margin:clamp(12px,2.5vw,20px) auto;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.3);border:4px solid rgba(255,255,255,.6);cursor:zoom-in;transition:transform .2s,box-shadow .2s}
-        .question-image:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+        .question-image{width:100%;max-width:650px;height:auto;display:block;margin:clamp(12px,2.5vw,20px) auto;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.3);border:4px solid rgba(255,255,255,.6);cursor:zoom-in}
+        .question-image:hover{transform:scale(1.02)}
         .alternatives{margin-top:clamp(10px,2vw,15px)}
-        .alternative{background:rgba(255,255,255,.2);padding:clamp(10px,2vw,14px) clamp(12px,2vw,16px);margin-bottom:10px;border-radius:8px;cursor:pointer;transition:all .3s;display:flex;align-items:center;border:2px solid transparent;gap:12px;user-select:none}
+        .alternative{background:rgba(255,255,255,.2);padding:clamp(10px,2vw,14px) clamp(12px,2vw,16px);margin-bottom:10px;border-radius:8px;cursor:pointer;transition:all .3s;display:flex;align-items:center;border:2px solid transparent;gap:12px}
         .alternative:hover{background:rgba(255,255,255,.35);transform:translateX(5px)}
-        .alternative input[type="radio"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;min-width:20px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.15);cursor:pointer;transition:all .25s;flex-shrink:0}
+        .alternative input[type="radio"]{appearance:none;width:20px;height:20px;min-width:20px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.15);cursor:pointer;flex-shrink:0}
         .alternative input[type="radio"]:checked{background:#2ecc71;border-color:#fff;box-shadow:0 0 0 3px rgba(46,204,113,.5)}
         .alternative label{cursor:pointer;flex:1;font-size:clamp(13px,2vw,15px);line-height:1.5;pointer-events:none}
-        .alternative.selected{background:#1a5f2a!important;border-color:#2ecc71;border-width:2px;box-shadow:0 2px 10px rgba(46,204,113,.4)}        .essay-section{margin-top:clamp(14px,2.5vw,20px)}
-        .essay-item{margin-bottom:clamp(16px,3vw,25px)}
-        .essay-label{display:block;font-weight:600;margin-bottom:8px;color:white;font-size:clamp(13px,2vw,15px);background:rgba(255,255,255,.2);padding:clamp(6px,1.5vw,8px) clamp(10px,2vw,12px);border-radius:6px;line-height:1.5}
-        .lined-paper{background:rgba(255,255,255,.95);border:none;border-radius:6px;min-height:110px;padding:15px;color:#2d3748;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:clamp(13px,1.8vw,14px);line-height:2;resize:vertical;width:100%;background-image:repeating-linear-gradient(transparent,transparent 31px,#cbd5e0 31px,#cbd5e0 32px);box-shadow:inset 0 2px 4px rgba(0,0,0,.1);touch-action:manipulation}
+        .alternative.selected{background:#1a5f2a!important;border-color:#2ecc71}
+        .essay-section{margin-top:clamp(14px,2.5vw,20px)}
+        .essay-item{margin-bottom:clamp(16px,3vw,25px)}        .essay-label{display:block;font-weight:600;margin-bottom:8px;color:white;font-size:clamp(13px,2vw,15px);background:rgba(255,255,255,.2);padding:clamp(6px,1.5vw,8px) clamp(10px,2vw,12px);border-radius:6px}
+        .lined-paper{background:rgba(255,255,255,.95);border:none;border-radius:6px;min-height:110px;padding:15px;color:#2d3748;font-size:clamp(13px,1.8vw,14px);line-height:2;resize:vertical;width:100%;background-image:repeating-linear-gradient(transparent,transparent 31px,#cbd5e0 31px,#cbd5e0 32px)}
         .lined-paper:focus{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.3)}
         .btn-row{display:flex;gap:14px;justify-content:center;margin:clamp(24px,4vw,35px) auto 0;max-width:700px;flex-wrap:wrap}
-        .submit-btn{background:linear-gradient(135deg,#1e3a8a 0%,#10b981 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px;margin:0}
-        .submit-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,.3)}
+        .submit-btn,.corrigir-btn{background:linear-gradient(135deg,#1e3a8a 0%,#10b981 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px}
+        .corrigir-btn{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%)}
+        .submit-btn:hover,.corrigir-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,.3)}
         .submit-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none}
-        .corrigir-btn{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px}
-        .corrigir-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(124,58,237,.4)}
         .result-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:15px;font-weight:600}
         .result-item.certo{background:#d1fae5;color:#065f46}
         .result-item.errado{background:#fee2e2;color:#991b1b}
         .result-score{font-size:clamp(28px,5vw,40px);font-weight:900;margin-bottom:4px}
         .result-sub{font-size:14px;opacity:.85}
-        #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;cursor:zoom-out;animation:lbFadeIn .2s ease}
+        #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:zoom-out}
         #lightbox.active{display:flex}
-        @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
-        #lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:lbZoomIn .25s cubic-bezier(.175,.885,.32,1.275)}
-        @keyframes lbZoomIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
-        #lightbox-close{position:fixed;top:18px;right:22px;color:white;font-size:36px;font-weight:300;cursor:pointer;opacity:.8;transition:opacity .2s,transform .2s;user-select:none}
-        #lightbox-close:hover{opacity:1;transform:rotate(90deg)}
-        @media screen and (max-width:480px){.info-field.name-field,.info-field.num-field,.info-field.series-field,.info-field.date-field{flex:0 0 100%;min-width:0}.info-row{flex-direction:column}}
+        #lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:10px}
+        #lightbox-close{position:fixed;top:18px;right:22px;color:white;font-size:36px;cursor:pointer}
+        @media(max-width:480px){.info-field{flex:0 0 100%!important}.info-row{flex-direction:column}}
     </style>
 </head>
 <body>
 <div id="monitorBanner"></div>
-
 <div class="container">
     <div class="header">
         <div class="school-name">E.E. PROFª WANDA MASCAGNI DE SÁ</div>
@@ -96,14 +89,14 @@
                     <option value="12">JOAO VITOR BARBOSA PONTES</option>
                     <option value="14">LAURAH APARECIDA CANDIDO DE OLIVEIRA</option>
                     <option value="15">MATHEUS DUARTE DA SILVA</option>
-                    <option value="17">ROSA MARIA OLIVEIRA ALMEIDA</option>                    <option value="18">SARAH LIVIA NUNES NASCIMENTO</option>
+                    <option value="17">ROSA MARIA OLIVEIRA ALMEIDA</option>
+                    <option value="18">SARAH LIVIA NUNES NASCIMENTO</option>
                     <option value="19">TALITA VITORIA VIEIRA NUNES</option>
                     <option value="20">VICTOR EDUARDO DOS SANTOS</option>
                     <option value="21">VITOR HUGO BRAZ GOMES</option>
                     <option value="22">LORENNA ANDRADE DE OLIVEIRA</option>
                     <option value="23">MARIA EDUARDA ARAUJO GARRIDO</option>
-                    <option value="24">RAISSA MATHIAS ANDRADE</option>
-                    <option value="25">UELITON VIEIRA DA SILVA</option>
+                    <option value="24">RAISSA MATHIAS ANDRADE</option>                    <option value="25">UELITON VIEIRA DA SILVA</option>
                     <option value="26">VALENTINA DOS SANTOS CORREA</option>
                     <option value="27">MARIA VITORIA ALMEIDA SANTOS</option>
                     <option value="28">CATARYNA DOS SANTOS</option>
@@ -129,7 +122,7 @@
         <div id="monitorLog"></div>
     </div>
 
-    <!-- Q1 -->
+    <!-- QUESTÃO 1 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 1 (Múltipla Escolha)</div>
         <div class="skills-badge">
@@ -145,19 +138,19 @@
             <div class="alternative" data-name="q1" data-value="B"><input type="radio" name="q1" value="B"><label>B) Estado líquido; evaporação</label></div>
             <div class="alternative" data-name="q1" data-value="C"><input type="radio" name="q1" value="C"><label>C) Estado sólido; solidificação</label></div>
             <div class="alternative" data-name="q1" data-value="D"><input type="radio" name="q1" value="D"><label>D) Estado sólido; fusão (derretimento)</label></div>
-        </div>    </div>
+        </div>
+    </div>
 
-    <!-- Q2 -->
+    <!-- QUESTÃO 2 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 2 (Dissertativa)</div>
         <div class="skills-badge">
-            <span class="skill-tag ae">AE1</span>
-            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag ae">AE1</span>            <span class="skill-tag hab">EF06CI11</span>
             <span class="skill-tag grupo">Grupo 1</span>
             <span class="skill-tag unidade">Terra e Universo</span>
         </div>
         <div class="question-text"><strong>Ciclo da Água e Evapotranspiração:</strong><br>A Floresta Amazônica forma os "rios voadores" através da evapotranspiração. Explique:</div>
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/rEnTcKsiCRhXzkgf.webp" alt="Rios voadores - Amazônia" class="question-image">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/rEnTcKsiCRhXzkgf.webp" alt="Rios voadores" class="question-image">
         <div class="essay-section">
             <div class="essay-item"><label class="essay-label">a) O que é evapotranspiração e como difere da evaporação simples?</label><textarea class="lined-paper" name="q2a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">b) Por que o desmatamento da Amazônia pode causar diminuição das chuvas em outras regiões?</label><textarea class="lined-paper" name="q2b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
@@ -165,7 +158,7 @@
         </div>
     </div>
 
-    <!-- Q3 -->
+    <!-- QUESTÃO 3 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 3 (Múltipla Escolha)</div>
         <div class="skills-badge">
@@ -184,7 +177,7 @@
         </div>
     </div>
 
-    <!-- Q4 -->
+    <!-- QUESTÃO 4 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 4 (Dissertativa)</div>
         <div class="skills-badge">
@@ -194,14 +187,14 @@
             <span class="skill-tag unidade">Terra e Universo</span>
         </div>
         <div class="question-text"><strong>Poluição da Água:</strong><br>O Rio Tietê é um exemplo de poluição hídrica. Responda:</div>
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído" class="question-image">        <div class="essay-section">
-            <div class="essay-item"><label class="essay-label">a) Quais são as principais fontes de contaminação das águas e como cada uma polui os recursos hídricos?</label><textarea class="lined-paper" name="q4a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído" class="question-image">
+        <div class="essay-section">
+            <div class="essay-item"><label class="essay-label">a) Quais são as principais fontes de contaminação das águas?</label><textarea class="lined-paper" name="q4a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">b) O que é chorume e como contamina os lençóis freáticos?</label><textarea class="lined-paper" name="q4b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">c) Qual a importância das ETAs e ETEs para a qualidade da água?</label><textarea class="lined-paper" name="q4c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
         </div>
     </div>
-
-    <!-- Q5 -->
+    <!-- QUESTÃO 5 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 5 (Múltipla Escolha)</div>
         <div class="skills-badge">
@@ -220,7 +213,7 @@
         </div>
     </div>
 
-    <!-- Q6 -->
+    <!-- QUESTÃO 6 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 6 (Dissertativa)</div>
         <div class="skills-badge">
@@ -230,33 +223,33 @@
             <span class="skill-tag unidade">Matéria e Energia</span>
         </div>
         <div class="question-text"><strong>Estados Físicos da Matéria:</strong><br>Observe a água nos três estados e explique:</div>
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/IcRQtHGcbNVixAJQ.jpg" alt="Água nos três estados físicos" class="question-image">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/IcRQtHGcbNVixAJQ.jpg" alt="Água nos três estados" class="question-image">
         <div class="essay-section">
             <div class="essay-item"><label class="essay-label">a) Características de forma e volume em cada estado físico:</label><textarea class="lined-paper" name="q6a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
-            <div class="essay-item"><label class="essay-label">b) Por que a água líquida assume a forma do recipiente e o sólido mantém a sua?</label><textarea class="lined-paper" name="q6b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
-            <div class="essay-item"><label class="essay-label">c) O que acontece com as moléculas na evaporação (líquido → gasoso)?</label><textarea class="lined-paper" name="q6c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">b) Por que a água líquida assume a forma do recipiente?</label><textarea class="lined-paper" name="q6b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">c) O que acontece com as moléculas na evaporação?</label><textarea class="lined-paper" name="q6c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
         </div>
     </div>
 
-    <!-- Q7 -->
+    <!-- QUESTÃO 7 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 7 (Múltipla Escolha)</div>
         <div class="skills-badge">
-            <span class="skill-tag ae">AE1 / AE4</span>
-            <span class="skill-tag hab">EF06CI11 / EF06CI01</span>            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag ae">AE1/AE4</span>
+            <span class="skill-tag hab">EF06CI11/EF06CI01</span>
+            <span class="skill-tag grupo">Grupo 1</span>
             <span class="skill-tag unidade">Terra e Universo / Matéria e Energia</span>
         </div>
-        <div class="question-text"><strong>Ciclo da Água — Formação das Chuvas:</strong><br>Quando o vapor d'água sobe e encontra temperaturas baixas, forma nuvens. Qual o nome desse processo e que mudança de estado representa?</div>
+        <div class="question-text"><strong>Ciclo da Água — Formação das Chuvas:</strong><br>Quando o vapor d'água sobe e encontra temperaturas baixas, forma nuvens. Qual o nome desse processo?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/YACQQjpmxRemiPtY.png" alt="Ciclo da água" class="question-image">
         <div class="alternatives">
-            <div class="alternative" data-name="q7" data-value="A"><input type="radio" name="q7" value="A"><label>A) Condensação; mudança do estado gasoso para o líquido</label></div>
-            <div class="alternative" data-name="q7" data-value="B"><input type="radio" name="q7" value="B"><label>B) Sublimação; mudança direta do sólido para o gasoso</label></div>
+            <div class="alternative" data-name="q7" data-value="A"><input type="radio" name="q7" value="A"><label>A) Condensação; mudança do estado gasoso para o líquido</label></div>            <div class="alternative" data-name="q7" data-value="B"><input type="radio" name="q7" value="B"><label>B) Sublimação; mudança direta do sólido para o gasoso</label></div>
             <div class="alternative" data-name="q7" data-value="C"><input type="radio" name="q7" value="C"><label>C) Solidificação; mudança do estado líquido para o sólido</label></div>
             <div class="alternative" data-name="q7" data-value="D"><input type="radio" name="q7" value="D"><label>D) Evaporação; mudança do estado líquido para o gasoso</label></div>
         </div>
     </div>
 
-    <!-- Q8 -->
+    <!-- QUESTÃO 8 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 8 (Dissertativa)</div>
         <div class="skills-badge">
@@ -268,13 +261,13 @@
         <div class="question-text"><strong>Água Potável e Acesso Desigual:</strong><br>O ODS 6 visa garantir água potável para todos até 2030. Responda:</div>
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY6fkSOBLdAtlXSyJyatGv3lEy9_78uVNN3t5bDl5_lPn3TvaKSjlFfW6H1I0W6kIOcDxmOR6jTyGRlQMklvj45hrBtz1NLtuBNRw0HYn5OaXnDfvOM-HCofhGPvASuWbpilowvpiPRigYdS4s7Nx_cZYBlrMVezUUQW0OEOD6MXHEm0yBlnueazr9JyXZ/s850/ChatGPT%20Image%2023%20de%20mai.%20de%202026,%2014_47_30.png" alt="Acesso à água potável" class="question-image">
         <div class="essay-section">
-            <div class="essay-item"><label class="essay-label">a) Quais os principais desafios para garantir água potável universal no Brasil e no mundo?</label><textarea class="lined-paper" name="q8a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
-            <div class="essay-item"><label class="essay-label">b) Por que é importante economizar água potável, já que a maior parte do planeta é salgada?</label><textarea class="lined-paper" name="q8b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">a) Quais os principais desafios para garantir água potável universal?</label><textarea class="lined-paper" name="q8a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">b) Por que é importante economizar água potável?</label><textarea class="lined-paper" name="q8b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">c) Cite três ações para conservar a água em casa ou na escola.</label><textarea class="lined-paper" name="q8c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
         </div>
     </div>
 
-    <!-- Q9 -->
+    <!-- QUESTÃO 9 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 9 (Múltipla Escolha)</div>
         <div class="skills-badge">
@@ -292,261 +285,149 @@
             <div class="alternative" data-name="q9" data-value="D"><input type="radio" name="q9" value="D"><label>D) A água não penetra no solo, causando enchentes e alagamentos</label></div>
         </div>
     </div>
-    <!-- Q10 -->
+
+    <!-- QUESTÃO 10 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 10 (Dissertativa)</div>
         <div class="skills-badge">
-            <span class="skill-tag ae">AE1 / AE3 / AE4</span>
-            <span class="skill-tag hab">EF06CI11 / EF06CI12 / EF06CI01</span>
-            <span class="skill-tag grupo">Grupo 1</span>
-            <span class="skill-tag unidade">Terra e Universo / Matéria e Energia</span>
+            <span class="skill-tag ae">AE1/AE3/AE4</span>
+            <span class="skill-tag hab">EF06CI11/EF06CI12/EF06CI01</span>
+            <span class="skill-tag grupo">Grupo 1</span>            <span class="skill-tag unidade">Terra e Universo / Matéria e Energia</span>
         </div>
         <div class="question-text"><strong>Reciclagem e Recursos Hídricos:</strong><br>Com base na imagem sobre reciclagem, explique:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/ZZDIXbqmbfUIrEJu.jpeg" alt="Centro de reciclagem" class="question-image">
         <div class="essay-section">
-            <div class="essay-item"><label class="essay-label">a) Como o descarte inadequado de lixo pode contaminar rios, lagos e oceanos?</label><textarea class="lined-paper" name="q10a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
-            <div class="essay-item"><label class="essay-label">b) De que forma a reciclagem contribui para a preservação da água e dos ecossistemas aquáticos?</label><textarea class="lined-paper" name="q10b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
-            <div class="essay-item"><label class="essay-label">c) Por que é importante não descartar lixo em margens de rios ou terrenos baldios?</label><textarea class="lined-paper" name="q10c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">a) Como o descarte inadequado de lixo pode contaminar rios e oceanos?</label><textarea class="lined-paper" name="q10a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">b) De que forma a reciclagem contribui para a preservação da água?</label><textarea class="lined-paper" name="q10b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
+            <div class="essay-item"><label class="essay-label">c) Por que é importante não descartar lixo em margens de rios?</label><textarea class="lined-paper" name="q10c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
         </div>
     </div>
 
     <div class="btn-row">
         <button type="button" class="corrigir-btn" id="corrigirBtn">🔍 CORRIGIR</button>
-        <button type="button" class="submit-btn" id="submitBtn">📤 ENTREGAR ATIVIDADE</button>
+        <button type="button" class="submit-btn" id="submitBtn">📤 ENTREGAR</button>
     </div>
 
-    <!-- Painel de resultado -->
     <div id="resultPanel" style="display:none;margin-top:20px;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.2)">
         <div id="resultHeader" style="padding:18px 24px;text-align:center;font-size:20px;font-weight:700;color:#fff"></div>
         <div id="resultBody" style="background:#f8fafc;padding:18px 24px"></div>
     </div>
 </div>
 
-<!-- Lightbox -->
-<div id="lightbox">
-    <span id="lightbox-close" title="Fechar">&#x2715;</span>
-    <img id="lightbox-img" src="" alt="Imagem ampliada">
-</div>
+<div id="lightbox"><span id="lightbox-close">&#x2715;</span><img id="lightbox-img" src="" alt=""></div>
 
 <script>
-// ── URL do Apps Script ────────────────────────────────────────────────────────
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyERmYA0s2pKTrz47WrXoP52JVcfZL0pnJwyTwBdC_rpfzi5e3xx24pXfZTSUnAEuZB/exec";
-
-// ── Gabarito e funções globais ─────────────────────────────────────────────────
-var GABARITO_LOCAL = { q1:"D", q3:"A", q5:"C", q7:"A", q9:"D" };
-var QUESTOES_OBJ   = ["q1","q3","q5","q7","q9"];
-
-// Retorna letra marcada pelo aluno (global — usada por Corrigir e Entregar)
-function getResposta(n) {
-    var r = document.querySelector('input[name="' + n + '"]:checked');
-    return r ? r.value : "";
-}
-// Retorna texto de textareafunction getTexto(n) {
-    var el = document.querySelector('textarea[name="' + n + '"]');
-    return el ? el.value.trim() : "";
-}
-// Conta acertos com base no gabarito global
-function calcAcertos() {
-    var ac = 0;
-    QUESTOES_OBJ.forEach(function(q) { if (getResposta(q) === GABARITO_LOCAL[q]) ac++; });
-    return ac;
-}
-
-// ── Inicialização ─────────────────────────────────────────────────────────────
-document.getElementById("date").valueAsDate = new Date();
-
-document.getElementById("studentName").addEventListener("change", function() {
-    document.getElementById("studentNumber").value = this.value || "—";
-});
-
-// ── Seleção de alternativas — clique em QUALQUER parte da div ─────────────────
-document.querySelectorAll(".alternative").forEach(function(alt) {
-    alt.addEventListener("click", function() {
-        const name  = this.dataset.name;
-        const value = this.dataset.value;
-        // desmarca todas do mesmo grupo
-        document.querySelectorAll('.alternative[data-name="' + name + '"]').forEach(function(a) {
-            a.classList.remove("selected");
-            a.querySelector("input[type='radio']").checked = false;
+document.addEventListener("DOMContentLoaded", function() {
+    // Gabarito
+    const GABARITO = {q1:"D", q3:"A", q5:"C", q7:"A", q9:"D"};
+    const QUESTOES = ["q1","q3","q5","q7","q9"];
+    
+    // Inicializa campos
+    const dateInput = document.getElementById("date");
+    if(dateInput) {
+        const hoje = new Date().toISOString().split('T')[0];
+        dateInput.value = hoje;
+    }
+    
+    const nameSelect = document.getElementById("studentName");
+    const numberInput = document.getElementById("studentNumber");
+    if(nameSelect && numberInput) {
+        numberInput.value = nameSelect.value || "—";
+        nameSelect.addEventListener("change", function() {
+            numberInput.value = this.value || "—";
         });
-        // marca esta
-        this.querySelector("input[type='radio']").checked = true;
-        this.classList.add("selected");
+    }
+    
+    // Seleção de alternativas
+    document.querySelectorAll(".alternative").forEach(alt => {
+        alt.addEventListener("click", function() {
+            const name = this.dataset.name;            document.querySelectorAll(`.alternative[data-name="${name}"]`).forEach(a => {
+                a.classList.remove("selected");
+                a.querySelector("input").checked = false;
+            });
+            this.querySelector("input").checked = true;
+            this.classList.add("selected");
+        });
     });
-});
-
-// ── Monitor de troca de aba/tela ──────────────────────────────────────────────
-let switchCount = 0;
-const banner = document.getElementById("monitorBanner");
-const logDiv  = document.getElementById("monitorLog");
-function recordSwitch(reason) {
-    switchCount++;
-    const ts = new Date().toLocaleTimeString("pt-BR");
-    banner.textContent = "⚠️ ALERTA: " + reason + " — ocorrência nº " + switchCount + " às " + ts;
-    banner.style.display = "block";
-    logDiv.textContent = "Saídas de tela registradas: " + switchCount;
-    setTimeout(function() { banner.style.display = "none"; }, 5000);
-}
-document.addEventListener("visibilitychange", function() { if (document.hidden) recordSwitch("Troca de aba"); });
-window.addEventListener("blur", function() { if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); });
-
-// ── Lightbox ──────────────────────────────────────────────────────────────────(function() {
+    
+    // Funções auxiliares
+    const getResposta = n => {
+        const r = document.querySelector(`input[name="${n}"]:checked`);
+        return r ? r.value : "";
+    };
+    const getTexto = n => {
+        const el = document.querySelector(`textarea[name="${n}"]`);
+        return el ? el.value.trim() : "";
+    };
+    const calcAcertos = () => {
+        let ac = 0;
+        QUESTOES.forEach(q => { if(getResposta(q) === GABARITO[q]) ac++; });
+        return ac;
+    };
+    
+    // Lightbox
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-img");
     const lbClose = document.getElementById("lightbox-close");
-    function open(src) { lbImg.src = src; lb.classList.add("active"); document.body.style.overflow = "hidden"; }
-    function close()   { lb.classList.remove("active"); document.body.style.overflow = ""; setTimeout(function() { lbImg.src = ""; }, 300); }
-    document.addEventListener("dblclick", function(e) { if (e.target.classList.contains("question-image")) open(e.target.src); });
-    lb.addEventListener("click", function(e) { if (e.target === lb || e.target === lbClose) close(); });
-    document.addEventListener("keydown", function(e) { if (e.key === "Escape") close(); });
-})();
-
-// ── Envio via JSONP (GET + Base64) — compatível com doGet do Apps Script ──────
-function sendData(payload) {
-    var btn = document.getElementById("submitBtn");
-    btn.disabled = true;
-    btn.textContent = "🔄 ENVIANDO...";
-
-    var callbackName = "gsCallback_" + Date.now();
-
-    // Codifica payload em Base64 igual ao GAS espera
-    var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-    var url = SCRIPT_URL + "?data=" + encoded + "&callback=" + callbackName;
-
-    var done = false;
-
-    // Callback chamado pelo JSONP quando o GAS responde
-    window[callbackName] = function(res) {
-        if (done) return;
-        done = true;
-        cleanup();
-        btn.disabled = false;
-        btn.textContent = "ENTREGAR ATIVIDADE";
-        if (res && res.status === "ok") {
-            alert("✅ Atividade entregue!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!");
-        } else {
-            alert("⚠️ Resposta inesperada do servidor. Fale com o professor.\n\n" + JSON.stringify(res));
-        }
-    };
-
-    var scriptTag = document.createElement("script");
-    scriptTag.src = url;
-
-    // Apps Script redireciona antes de executar → onerror dispara mesmo com sucesso.
-    // Usamos timeout: se em 10s o callback não veio, assumimos entregue.
-    var timer = setTimeout(function() {
-        if (done) return;
-        done = true;
-        cleanup();
-        btn.disabled = false;
-        btn.textContent = "ENTREGAR ATIVIDADE";        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
-    }, 10000);
-
-    // onerror do script tag: no Apps Script isso ocorre por causa do redirect,
-    // mas o dado já foi recebido. Aguardamos o timeout para confirmar.
-    scriptTag.onerror = function() {
-        // Não fazemos nada aqui — o timer acima cuidará da confirmação.
-        // Se o callback vier antes do timer, ele cancela tudo corretamente.
-    };
-
-    function cleanup() {
-        clearTimeout(timer);
-        delete window[callbackName];
-        if (scriptTag.parentNode) document.body.removeChild(scriptTag);
+    if(lb) {
+        document.addEventListener("dblclick", e => {
+            if(e.target.classList.contains("question-image")) {
+                lbImg.src = e.target.src;
+                lb.classList.add("active");
+            }
+        });
+        lb.addEventListener("click", e => {
+            if(e.target === lb || e.target === lbClose) {
+                lb.classList.remove("active");
+                lbImg.src = "";
+            }
+        });
     }
-
-    document.body.appendChild(scriptTag);
-}
-
-// ── Submit ────────────────────────────────────────────────────────────────────
-document.getElementById("submitBtn").addEventListener("click", function() {
-    const sel  = document.getElementById("studentName");
-    const date = document.getElementById("date").value;
-
-    if (!sel.value) { alert("⚠️ Selecione seu nome antes de entregar."); return; }
-    if (!date)      { alert("⚠️ Preencha a data antes de entregar."); return; }
-
-    for (var q of ["q1","q3","q5","q7","q9"]) {
-        if (!document.querySelector('input[name="' + q + '"]:checked')) {
-            alert("⚠️ Responda todas as questões de múltipla escolha."); return;
+    
+    // Correção
+    document.getElementById("corrigirBtn")?.addEventListener("click", function() {
+        let acertos = 0, html = "";
+        const labels = {q1:"Q1", q3:"Q3", q5:"Q5", q7:"Q7", q9:"Q9"};
+        
+        QUESTOES.forEach(q => {
+            const resp = getResposta(q), gab = GABARITO[q];            if(!resp) {
+                html += `<div class="result-item errado">⚠️ ${labels[q]} — não respondida</div>`;
+            } else if(resp === gab) {
+                acertos++;
+                html += `<div class="result-item certo">✅ ${labels[q]} — Correta! (${resp})</div>`;
+            } else {
+                html += `<div class="result-item errado">❌ ${labels[q]} — Sua: ${resp} | Correta: ${gab}</div>`;
+            }
+        });
+        
+        const nota = (acertos/QUESTOES.length)*10;
+        const panel = document.getElementById("resultPanel");
+        const header = document.getElementById("resultHeader");
+        const body = document.getElementById("resultBody");
+        
+        if(header) {
+            header.style.background = nota>=5 ? "linear-gradient(135deg,#065f46,#10b981)" : "linear-gradient(135deg,#991b1b,#ef4444)";
+            header.innerHTML = `<div class="result-score">${acertos}/${QUESTOES.length} acertos — Nota: ${nota.toFixed(1)}</div><div class="result-sub">${nota>=5?"✅ Aprovado":"❌ Abaixo da média"}</div>`;
         }
-    }
-
-    var incomplete = false;
-    for (var f of ["q2a","q2b","q2c","q4a","q4b","q4c","q6a","q6b","q6c","q8a","q8b","q8c","q10a","q10b","q10c"]) {
-        var el = document.querySelector('textarea[name="' + f + '"]');
-        if (el && el.value.trim().length < 10) { incomplete = true; break; }
-    }
-    if (incomplete && !confirm("⚠️ Algumas dissertativas parecem incompletas. Deseja continuar?")) return;
-
-    // Calcula acertos usando funções e gabarito globais
-    var acertos  = calcAcertos();
-    var nota10   = Math.round((acertos / QUESTOES_OBJ.length) * 10 * 10) / 10;
-
-    var payload = {
-        sheetName:     "Respostas 6ºAno C",
-        studentName:   sel.options[sel.selectedIndex].text,
-        studentNumber: sel.value,
-        studentGrade:  "6º Ano C",
-        date:          date,        switchCount:   switchCount,
-        correct:       acertos,
-        percentage:    nota10,
-        q1: getResposta("q1"), q3: getResposta("q3"), q5: getResposta("q5"), q7: getResposta("q7"), q9: getResposta("q9"),
-        // GAS lê d1–d5; agrupamos as 3 sub-respostas de cada questão dissertativa
-        d1: "Q2a: " + getTexto("q2a") + "\nQ2b: " + getTexto("q2b") + "\nQ2c: " + getTexto("q2c"),
-        d2: "Q4a: " + getTexto("q4a") + "\nQ4b: " + getTexto("q4b") + "\nQ4c: " + getTexto("q4c"),
-        d3: "Q6a: " + getTexto("q6a") + "\nQ6b: " + getTexto("q6b") + "\nQ6c: " + getTexto("q6c"),
-        d4: "Q8a: " + getTexto("q8a") + "\nQ8b: " + getTexto("q8b") + "\nQ8c: " + getTexto("q8c"),
-        d5: "Q10a: " + getTexto("q10a") + "\nQ10b: " + getTexto("q10b") + "\nQ10c: " + getTexto("q10c")
-    };
-
-    sendData(payload);
-});
-
-// ── Correção instantânea ──────────────────────────────────────────────────────
-document.getElementById("corrigirBtn").addEventListener("click", function() {
-    var labels = {
-        q1: "Questão 1", q3: "Questão 3", q5: "Questão 5",
-        q7: "Questão 7", q9: "Questão 9"
-    };
-
-    var acertos = 0;
-    var html = "";
-
-    QUESTOES_OBJ.forEach(function(q) {
-        var resp = getResposta(q);
-        var gab  = GABARITO_LOCAL[q];
-        if (!resp) {
-            html += '<div class="result-item errado">⚠️ ' + labels[q] + ' — não respondida</div>';
-            return;
-        }
-        if (resp === gab) {
-            acertos++;
-            html += '<div class="result-item certo">✅ ' + labels[q] + ' — Correta! (alternativa ' + resp + ')</div>';
-        } else {
-            html += '<div class="result-item errado">❌ ' + labels[q] + ' — Sua resposta: ' + resp + ' | Correta: ' + gab + '</div>';
-        }
+        if(body) body.innerHTML = html + `<p style="margin-top:12px;font-size:13px;color:#64748b">* Dissertativas serão corrigidas pelo professor.</p>`;
+        if(panel) { panel.style.display="block"; panel.scrollIntoView({behavior:"smooth"}); }
     });
-
-    var nota = (acertos / QUESTOES_OBJ.length) * 10;
-    var aprovado = nota >= 5;
-
-    var panel  = document.getElementById("resultPanel");
-    var header = document.getElementById("resultHeader");
-    var body   = document.getElementById("resultBody");
-
-    header.style.background = aprovado
-        ? "linear-gradient(135deg,#065f46,#10b981)"
-        : "linear-gradient(135deg,#991b1b,#ef4444)";
-    header.innerHTML =
-        '<div class="result-score">' + acertos + '/' + QUESTOES_OBJ.length + ' acertos — Nota: ' + nota.toFixed(1) + '</div>' +
-        '<div class="result-sub">' + (aprovado ? "✅ Aprovado nas objetivas!" : "❌ Abaixo da média nas objetivas") + '</div>';
-
-    body.innerHTML = html +
-        '<p style="margin-top:12px;font-size:13px;color:#64748b">* As questões dissertativas serão corrigidas pelo professor.</p>';
-
-    panel.style.display = "block";
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    
+    // Submit (simulado)
+    document.getElementById("submitBtn")?.addEventListener("click", function() {
+        const sel = document.getElementById("studentName");
+        const date = document.getElementById("date").value;
+        if(!sel?.value) { alert("⚠️ Selecione seu nome."); return; }
+        if(!date) { alert("⚠️ Preencha a data."); return; }
+        
+        for(const q of QUESTOES) {
+            if(!document.querySelector(`input[name="${q}"]:checked`)) {
+                alert("⚠️ Responda todas as questões objetivas."); return;
+            }
+        }
+        
+        alert(`✅ Atividade entregue!\n\n📋 ${sel.options[sel.selectedIndex].text}\n📅 ${date}\n📊 Nota objetiva: ${(calcAcertos()/QUESTOES.length*10).toFixed(1)}`);
+    });
 });
 </script>
 </body>
