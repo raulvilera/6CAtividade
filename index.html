@@ -25,6 +25,15 @@
         .info-field input:focus,.info-field select:focus{outline:none;border-color:#3b82f6;background:white;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
         .activity-title{font-size:clamp(18px,4.5vw,30px);font-weight:700;color:#1e3a8a;margin:clamp(18px,3vw,30px) 0 10px;text-align:center;text-transform:uppercase;letter-spacing:1.5px;line-height:1.2}
         .class-info{text-align:center;font-size:clamp(16px,3vw,20px);font-weight:600;color:#166534;margin-bottom:clamp(18px,3vw,30px);padding:8px 0;border-bottom:2px dashed #166534;width:fit-content;margin-left:auto;margin-right:auto}
+        
+        /* Badge de habilidades */
+        .skills-badge{display:inline-flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px;padding:6px 10px;background:rgba(255,255,255,0.25);border-radius:8px;font-size:clamp(10px,1.6vw,12px);backdrop-filter:blur(5px)}
+        .skill-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-weight:600;background:rgba(255,255,255,0.3)}
+        .skill-tag.ae{background:#fbbf24;color:#78350f}
+        .skill-tag.hab{background:#60a5fa;color:#1e3a8a}
+        .skill-tag.grupo{background:#34d399;color:#064e3b}
+        .skill-tag.unidade{background:#a78bfa;color:#4c1d95}
+        
         .question-card{background:linear-gradient(135deg,#1e3a8a 0%,#3b82f6 50%,#10b981 100%);border-radius:12px;padding:clamp(16px,3.5vw,25px);margin-bottom:12px;box-shadow:0 6px 12px rgba(0,0,0,.2);color:white;transition:transform .2s;overflow:hidden}
         .question-card:hover{transform:translateY(-2px)}
         .question-card::after{content:'';display:block;height:5px;background:linear-gradient(90deg,rgba(255,255,255,.4),rgba(255,255,255,.1));border-radius:0 0 12px 12px;margin-top:14px}
@@ -33,53 +42,27 @@
         .question-image{width:100%;max-width:650px;height:auto;display:block;margin:clamp(12px,2.5vw,20px) auto;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.3);border:4px solid rgba(255,255,255,.6);cursor:zoom-in;transition:transform .2s,box-shadow .2s}
         .question-image:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(0,0,0,.4)}
         .alternatives{margin-top:clamp(10px,2vw,15px)}
-
-        /* ── ALTERNATIVA: clique em qualquer ponto da div ── */
-        .alternative{
-            background:rgba(255,255,255,.2);
-            padding:clamp(10px,2vw,14px) clamp(12px,2vw,16px);
-            margin-bottom:10px;
-            border-radius:8px;
-            cursor:pointer;
-            transition:all .3s;
-            display:flex;
-            align-items:center;
-            border:2px solid transparent;
-            gap:12px;
-            user-select:none;
-        }
+        .alternative{background:rgba(255,255,255,.2);padding:clamp(10px,2vw,14px) clamp(12px,2vw,16px);margin-bottom:10px;border-radius:8px;cursor:pointer;transition:all .3s;display:flex;align-items:center;border:2px solid transparent;gap:12px;user-select:none}
         .alternative:hover{background:rgba(255,255,255,.35);transform:translateX(5px)}
-
-        /* Radio escondido mas acessível */
-        .alternative input[type="radio"]{
-            appearance:none;
-            -webkit-appearance:none;
-            width:20px;height:20px;
-            min-width:20px;
-            border-radius:50%;
-            border:2px solid rgba(255,255,255,.8);
-            background:rgba(255,255,255,.15);
-            cursor:pointer;
-            transition:all .25s;
-            flex-shrink:0;
-        }
-        .alternative input[type="radio"]:checked{
-            background:#2ecc71;
-            border-color:#fff;
-            box-shadow:0 0 0 3px rgba(46,204,113,.5);
-        }
+        .alternative input[type="radio"]{appearance:none;-webkit-appearance:none;width:20px;height:20px;min-width:20px;border-radius:50%;border:2px solid rgba(255,255,255,.8);background:rgba(255,255,255,.15);cursor:pointer;transition:all .25s;flex-shrink:0}
+        .alternative input[type="radio"]:checked{background:#2ecc71;border-color:#fff;box-shadow:0 0 0 3px rgba(46,204,113,.5)}
         .alternative label{cursor:pointer;flex:1;font-size:clamp(13px,2vw,15px);line-height:1.5;pointer-events:none}
-
-        .alternative.selected{background:#1a5f2a!important;border-color:#2ecc71;border-width:2px;box-shadow:0 2px 10px rgba(46,204,113,.4)}
-
-        .essay-section{margin-top:clamp(14px,2.5vw,20px)}
+        .alternative.selected{background:#1a5f2a!important;border-color:#2ecc71;border-width:2px;box-shadow:0 2px 10px rgba(46,204,113,.4)}        .essay-section{margin-top:clamp(14px,2.5vw,20px)}
         .essay-item{margin-bottom:clamp(16px,3vw,25px)}
         .essay-label{display:block;font-weight:600;margin-bottom:8px;color:white;font-size:clamp(13px,2vw,15px);background:rgba(255,255,255,.2);padding:clamp(6px,1.5vw,8px) clamp(10px,2vw,12px);border-radius:6px;line-height:1.5}
         .lined-paper{background:rgba(255,255,255,.95);border:none;border-radius:6px;min-height:110px;padding:15px;color:#2d3748;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:clamp(13px,1.8vw,14px);line-height:2;resize:vertical;width:100%;background-image:repeating-linear-gradient(transparent,transparent 31px,#cbd5e0 31px,#cbd5e0 32px);box-shadow:inset 0 2px 4px rgba(0,0,0,.1);touch-action:manipulation}
         .lined-paper:focus{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.3)}
-        /* submit-btn redefinido em .btn-row abaixo */
+        .btn-row{display:flex;gap:14px;justify-content:center;margin:clamp(24px,4vw,35px) auto 0;max-width:700px;flex-wrap:wrap}
+        .submit-btn{background:linear-gradient(135deg,#1e3a8a 0%,#10b981 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px;margin:0}
         .submit-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(0,0,0,.3)}
         .submit-btn:disabled{background:#94a3b8;cursor:not-allowed;transform:none}
+        .corrigir-btn{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px}
+        .corrigir-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(124,58,237,.4)}
+        .result-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:15px;font-weight:600}
+        .result-item.certo{background:#d1fae5;color:#065f46}
+        .result-item.errado{background:#fee2e2;color:#991b1b}
+        .result-score{font-size:clamp(28px,5vw,40px);font-weight:900;margin-bottom:4px}
+        .result-sub{font-size:14px;opacity:.85}
         #lightbox{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;cursor:zoom-out;animation:lbFadeIn .2s ease}
         #lightbox.active{display:flex}
         @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
@@ -88,15 +71,6 @@
         #lightbox-close{position:fixed;top:18px;right:22px;color:white;font-size:36px;font-weight:300;cursor:pointer;opacity:.8;transition:opacity .2s,transform .2s;user-select:none}
         #lightbox-close:hover{opacity:1;transform:rotate(90deg)}
         @media screen and (max-width:480px){.info-field.name-field,.info-field.num-field,.info-field.series-field,.info-field.date-field{flex:0 0 100%;min-width:0}.info-row{flex-direction:column}}
-        .btn-row{display:flex;gap:14px;justify-content:center;margin:clamp(24px,4vw,35px) auto 0;max-width:700px;flex-wrap:wrap}
-        .submit-btn{background:linear-gradient(135deg,#1e3a8a 0%,#10b981 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px;margin:0}
-        .corrigir-btn{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:white;padding:clamp(13px,2.5vw,16px) clamp(28px,5vw,45px);border:none;border-radius:10px;font-size:clamp(15px,2.5vw,18px);font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 6px 12px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:1px;flex:1;min-width:200px}
-        .corrigir-btn:hover{transform:translateY(-3px);box-shadow:0 8px 16px rgba(124,58,237,.4)}
-        .result-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:8px;font-size:15px;font-weight:600}
-        .result-item.certo{background:#d1fae5;color:#065f46}
-        .result-item.errado{background:#fee2e2;color:#991b1b}
-        .result-score{font-size:clamp(28px,5vw,40px);font-weight:900;margin-bottom:4px}
-        .result-sub{font-size:14px;opacity:.85}
     </style>
 </head>
 <body>
@@ -105,7 +79,6 @@
 <div class="container">
     <div class="header">
         <div class="school-name">E.E. PROFª WANDA MASCAGNI DE SÁ</div>
-
         <div class="info-row">
             <div class="info-field name-field">
                 <label for="studentName">NOME:</label>
@@ -123,8 +96,7 @@
                     <option value="12">JOAO VITOR BARBOSA PONTES</option>
                     <option value="14">LAURAH APARECIDA CANDIDO DE OLIVEIRA</option>
                     <option value="15">MATHEUS DUARTE DA SILVA</option>
-                    <option value="17">ROSA MARIA OLIVEIRA ALMEIDA</option>
-                    <option value="18">SARAH LIVIA NUNES NASCIMENTO</option>
+                    <option value="17">ROSA MARIA OLIVEIRA ALMEIDA</option>                    <option value="18">SARAH LIVIA NUNES NASCIMENTO</option>
                     <option value="19">TALITA VITORIA VIEIRA NUNES</option>
                     <option value="20">VICTOR EDUARDO DOS SANTOS</option>
                     <option value="21">VITOR HUGO BRAZ GOMES</option>
@@ -142,7 +114,6 @@
                 <input type="text" id="studentNumber" readonly placeholder="—">
             </div>
         </div>
-
         <div class="info-row">
             <div class="info-field series-field">
                 <label>SÉRIE:</label>
@@ -153,7 +124,6 @@
                 <input type="date" id="date">
             </div>
         </div>
-
         <div class="activity-title">ATIVIDADE DE CIÊNCIAS (2º BIMESTRE)</div>
         <div class="class-info">Temas: Hidrosfera, Atmosfera, Litosfera e Biosfera</div>
         <div id="monitorLog"></div>
@@ -162,6 +132,12 @@
     <!-- Q1 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 1 (Múltipla Escolha)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE4</span>
+            <span class="skill-tag hab">EF06CI01</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Matéria e Energia</span>
+        </div>
         <div class="question-text"><strong>Estados Físicos da Água:</strong><br>Em qual estado físico a água se encontra nas geleiras e icebergs, e qual mudança de estado ocorre quando um cubo de gelo derrete em temperatura ambiente?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/pmzTUDwfxtFureJx.jpg" alt="Estados físicos da água" class="question-image">
         <div class="alternatives">
@@ -169,12 +145,17 @@
             <div class="alternative" data-name="q1" data-value="B"><input type="radio" name="q1" value="B"><label>B) Estado líquido; evaporação</label></div>
             <div class="alternative" data-name="q1" data-value="C"><input type="radio" name="q1" value="C"><label>C) Estado sólido; solidificação</label></div>
             <div class="alternative" data-name="q1" data-value="D"><input type="radio" name="q1" value="D"><label>D) Estado sólido; fusão (derretimento)</label></div>
-        </div>
-    </div>
+        </div>    </div>
 
     <!-- Q2 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 2 (Dissertativa)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Ciclo da Água e Evapotranspiração:</strong><br>A Floresta Amazônica forma os "rios voadores" através da evapotranspiração. Explique:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/rEnTcKsiCRhXzkgf.webp" alt="Rios voadores - Amazônia" class="question-image">
         <div class="essay-section">
@@ -187,6 +168,12 @@
     <!-- Q3 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 3 (Múltipla Escolha)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Distribuição da Água no Planeta:</strong><br>Qual a porcentagem de água doce disponível e por que a maior parte é de difícil acesso?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/WFQfHNMsPCsHfsoL.jpg" alt="Distribuição da água" class="question-image">
         <div class="alternatives">
@@ -200,9 +187,14 @@
     <!-- Q4 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 4 (Dissertativa)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Poluição da Água:</strong><br>O Rio Tietê é um exemplo de poluição hídrica. Responda:</div>
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído" class="question-image">
-        <div class="essay-section">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/MFoSZMHccznoFjvL.jpg" alt="Rio Tietê poluído" class="question-image">        <div class="essay-section">
             <div class="essay-item"><label class="essay-label">a) Quais são as principais fontes de contaminação das águas e como cada uma polui os recursos hídricos?</label><textarea class="lined-paper" name="q4a" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">b) O que é chorume e como contamina os lençóis freáticos?</label><textarea class="lined-paper" name="q4b" rows="4" placeholder="Digite sua resposta..."></textarea></div>
             <div class="essay-item"><label class="essay-label">c) Qual a importância das ETAs e ETEs para a qualidade da água?</label><textarea class="lined-paper" name="q4c" rows="4" placeholder="Digite sua resposta..."></textarea></div>
@@ -212,6 +204,12 @@
     <!-- Q5 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 5 (Múltipla Escolha)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Biosfera e Ecossistema:</strong><br>Identifique corretamente a relação entre componentes bióticos e abióticos:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/EWOGJoNcFXwCwPtM.jpg" alt="Ecossistema" class="question-image">
         <div class="alternatives">
@@ -225,6 +223,12 @@
     <!-- Q6 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 6 (Dissertativa)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE4</span>
+            <span class="skill-tag hab">EF06CI01</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Matéria e Energia</span>
+        </div>
         <div class="question-text"><strong>Estados Físicos da Matéria:</strong><br>Observe a água nos três estados e explique:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/IcRQtHGcbNVixAJQ.jpg" alt="Água nos três estados físicos" class="question-image">
         <div class="essay-section">
@@ -237,6 +241,11 @@
     <!-- Q7 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 7 (Múltipla Escolha)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1 / AE4</span>
+            <span class="skill-tag hab">EF06CI11 / EF06CI01</span>            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo / Matéria e Energia</span>
+        </div>
         <div class="question-text"><strong>Ciclo da Água — Formação das Chuvas:</strong><br>Quando o vapor d'água sobe e encontra temperaturas baixas, forma nuvens. Qual o nome desse processo e que mudança de estado representa?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/YACQQjpmxRemiPtY.png" alt="Ciclo da água" class="question-image">
         <div class="alternatives">
@@ -250,6 +259,12 @@
     <!-- Q8 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 8 (Dissertativa)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Água Potável e Acesso Desigual:</strong><br>O ODS 6 visa garantir água potável para todos até 2030. Responda:</div>
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhY6fkSOBLdAtlXSyJyatGv3lEy9_78uVNN3t5bDl5_lPn3TvaKSjlFfW6H1I0W6kIOcDxmOR6jTyGRlQMklvj45hrBtz1NLtuBNRw0HYn5OaXnDfvOM-HCofhGPvASuWbpilowvpiPRigYdS4s7Nx_cZYBlrMVezUUQW0OEOD6MXHEm0yBlnueazr9JyXZ/s850/ChatGPT%20Image%2023%20de%20mai.%20de%202026,%2014_47_30.png" alt="Acesso à água potável" class="question-image">
         <div class="essay-section">
@@ -262,6 +277,12 @@
     <!-- Q9 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 9 (Múltipla Escolha)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1</span>
+            <span class="skill-tag hab">EF06CI11</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo</span>
+        </div>
         <div class="question-text"><strong>Lençóis Freáticos:</strong><br>O que acontece em áreas com solo impermeabilizado quando chove intensamente?</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/QttvhoNxsBMgIBbh.jpg" alt="Lençol freático" class="question-image">
         <div class="alternatives">
@@ -271,10 +292,15 @@
             <div class="alternative" data-name="q9" data-value="D"><input type="radio" name="q9" value="D"><label>D) A água não penetra no solo, causando enchentes e alagamentos</label></div>
         </div>
     </div>
-
     <!-- Q10 -->
     <div class="question-card">
         <div class="question-number">QUESTÃO 10 (Dissertativa)</div>
+        <div class="skills-badge">
+            <span class="skill-tag ae">AE1 / AE3 / AE4</span>
+            <span class="skill-tag hab">EF06CI11 / EF06CI12 / EF06CI01</span>
+            <span class="skill-tag grupo">Grupo 1</span>
+            <span class="skill-tag unidade">Terra e Universo / Matéria e Energia</span>
+        </div>
         <div class="question-text"><strong>Reciclagem e Recursos Hídricos:</strong><br>Com base na imagem sobre reciclagem, explique:</div>
         <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663084892104/ZZDIXbqmbfUIrEJu.jpeg" alt="Centro de reciclagem" class="question-image">
         <div class="essay-section">
@@ -315,8 +341,7 @@ function getResposta(n) {
     var r = document.querySelector('input[name="' + n + '"]:checked');
     return r ? r.value : "";
 }
-// Retorna texto de textarea
-function getTexto(n) {
+// Retorna texto de textareafunction getTexto(n) {
     var el = document.querySelector('textarea[name="' + n + '"]');
     return el ? el.value.trim() : "";
 }
@@ -365,8 +390,7 @@ function recordSwitch(reason) {
 document.addEventListener("visibilitychange", function() { if (document.hidden) recordSwitch("Troca de aba"); });
 window.addEventListener("blur", function() { if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); });
 
-// ── Lightbox ──────────────────────────────────────────────────────────────────
-(function() {
+// ── Lightbox ──────────────────────────────────────────────────────────────────(function() {
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-img");
     const lbClose = document.getElementById("lightbox-close");
@@ -415,8 +439,7 @@ function sendData(payload) {
         done = true;
         cleanup();
         btn.disabled = false;
-        btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
+        btn.textContent = "ENTREGAR ATIVIDADE";        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
     }, 10000);
 
     // onerror do script tag: no Apps Script isso ocorre por causa do redirect,
@@ -465,8 +488,7 @@ document.getElementById("submitBtn").addEventListener("click", function() {
         studentName:   sel.options[sel.selectedIndex].text,
         studentNumber: sel.value,
         studentGrade:  "6º Ano C",
-        date:          date,
-        switchCount:   switchCount,
+        date:          date,        switchCount:   switchCount,
         correct:       acertos,
         percentage:    nota10,
         q1: getResposta("q1"), q3: getResposta("q3"), q5: getResposta("q5"), q7: getResposta("q7"), q9: getResposta("q9"),
@@ -516,7 +538,6 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
     header.style.background = aprovado
         ? "linear-gradient(135deg,#065f46,#10b981)"
         : "linear-gradient(135deg,#991b1b,#ef4444)";
-
     header.innerHTML =
         '<div class="result-score">' + acertos + '/' + QUESTOES_OBJ.length + ' acertos — Nota: ' + nota.toFixed(1) + '</div>' +
         '<div class="result-sub">' + (aprovado ? "✅ Aprovado nas objetivas!" : "❌ Abaixo da média nas objetivas") + '</div>';
@@ -527,7 +548,6 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
     panel.style.display = "block";
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
 });
-
 </script>
 </body>
 </html>
