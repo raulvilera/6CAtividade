@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -313,20 +310,24 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyku30cGOaPoeeDM2JDU
 var GABARITO_LOCAL = { q1:"D", q3:"A", q5:"C", q7:"A", q9:"D" };
 var QUESTOES_OBJ   = ["q1","q3","q5","q7","q9"];
 
-// Retorna letra marcada pelo aluno (global — usada por Corrigir e Entregar)
+// Retorna letra marcada pelo aluno
 function getResposta(n) {
     var r = document.querySelector('input[name="' + n + '"]:checked');
     return r ? r.value : "";
 }
+
 // Retorna texto de textarea
 function getTexto(n) {
     var el = document.querySelector('textarea[name="' + n + '"]');
     return el ? el.value.trim() : "";
 }
+
 // Conta acertos com base no gabarito global
 function calcAcertos() {
     var ac = 0;
-    QUESTOES_OBJ.forEach(function(q) { if (getResposta(q) === GABARITO_LOCAL[q]) ac++; });
+    QUESTOES_OBJ.forEach(function(q) { 
+        if (getResposta(q) === GABARITO_LOCAL[q]) ac++; 
+    });
     return ac;
 }
 
@@ -337,16 +338,18 @@ document.getElementById("studentName").addEventListener("change", function() {
     document.getElementById("studentNumber").value = this.value || "—";
 });
 
-// ── Seleção de alternativas — clique em QUALQUER parte da div ─────────────────
+// ── Seleção de alternativas ───────────────────────────────────────────────────
 document.querySelectorAll(".alternative").forEach(function(alt) {
     alt.addEventListener("click", function() {
         const name  = this.dataset.name;
         const value = this.dataset.value;
+        
         // desmarca todas do mesmo grupo
         document.querySelectorAll('.alternative[data-name="' + name + '"]').forEach(function(a) {
             a.classList.remove("selected");
             a.querySelector("input[type='radio']").checked = false;
         });
+        
         // marca esta
         this.querySelector("input[type='radio']").checked = true;
         this.classList.add("selected");
@@ -357,6 +360,7 @@ document.querySelectorAll(".alternative").forEach(function(alt) {
 let switchCount = 0;
 const banner = document.getElementById("monitorBanner");
 const logDiv  = document.getElementById("monitorLog");
+
 function recordSwitch(reason) {
     switchCount++;
     const ts = new Date().toLocaleTimeString("pt-BR");
@@ -365,19 +369,44 @@ function recordSwitch(reason) {
     logDiv.textContent = "Saídas de tela registradas: " + switchCount;
     setTimeout(function() { banner.style.display = "none"; }, 5000);
 }
-document.addEventListener("visibilitychange", function() { if (document.hidden) recordSwitch("Troca de aba"); });
-window.addEventListener("blur", function() { if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); });
+
+document.addEventListener("visibilitychange", function() { 
+    if (document.hidden) recordSwitch("Troca de aba"); 
+});
+
+window.addEventListener("blur", function() { 
+    if (document.visibilityState === "visible") recordSwitch("Janela minimizada"); 
+});
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
 (function() {
     const lb = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightbox-img");
     const lbClose = document.getElementById("lightbox-close");
-    function open(src) { lbImg.src = src; lb.classList.add("active"); document.body.style.overflow = "hidden"; }
-    function close()   { lb.classList.remove("active"); document.body.style.overflow = ""; setTimeout(function() { lbImg.src = ""; }, 300); }
-    document.addEventListener("dblclick", function(e) { if (e.target.classList.contains("question-image")) open(e.target.src); });
-    lb.addEventListener("click", function(e) { if (e.target === lb || e.target === lbClose) close(); });
-    document.addEventListener("keydown", function(e) { if (e.key === "Escape") close(); });
+    
+    function open(src) { 
+        lbImg.src = src; 
+        lb.classList.add("active"); 
+        document.body.style.overflow = "hidden"; 
+    }
+    
+    function close() { 
+        lb.classList.remove("active"); 
+        document.body.style.overflow = ""; 
+        setTimeout(function() { lbImg.src = ""; }, 300); 
+    }
+    
+    document.addEventListener("dblclick", function(e) { 
+        if (e.target.classList.contains("question-image")) open(e.target.src); 
+    });
+    
+    lb.addEventListener("click", function(e) { 
+        if (e.target === lb || e.target === lbClose) close(); 
+    });
+    
+    document.addEventListener("keydown", function(e) { 
+        if (e.key === "Escape") close(); 
+    });
 })();
 
 // ── Envio via JSONP (GET + Base64) — compatível com doGet do Apps Script ──────
@@ -388,7 +417,7 @@ function sendData(payload) {
 
     var callbackName = "gsCallback_" + Date.now();
 
-    // Codifica payload em Base64 igual ao GAS espera
+    // Codifica payload em Base64
     var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
     var url = SCRIPT_URL + "?data=" + encoded + "&callback=" + callbackName;
 
@@ -401,8 +430,11 @@ function sendData(payload) {
         cleanup();
         btn.disabled = false;
         btn.textContent = "ENTREGAR ATIVIDADE";
+        
         if (res && res.status === "ok") {
-            alert("✅ Atividade entregue!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!");
+            alert("✅ Atividade entregue!\n\n📋 " + payload.studentName + 
+                  "\n📅 " + payload.date + 
+                  "\n\nBom trabalho!");
         } else {
             alert("⚠️ Resposta inesperada do servidor. Fale com o professor.\n\n" + JSON.stringify(res));
         }
@@ -419,7 +451,9 @@ function sendData(payload) {
         cleanup();
         btn.disabled = false;
         btn.textContent = "ENTREGAR ATIVIDADE";
-        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + "\n📅 " + payload.date + "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
+        alert("✅ Atividade enviada!\n\n📋 " + payload.studentName + 
+              "\n📅 " + payload.date + 
+              "\n\nBom trabalho!\n\n(O servidor confirmou o recebimento.)");
     }, 10000);
 
     // onerror do script tag: no Apps Script isso ocorre por causa do redirect,
@@ -443,37 +477,64 @@ document.getElementById("submitBtn").addEventListener("click", function() {
     const sel  = document.getElementById("studentName");
     const date = document.getElementById("date").value;
 
-    if (!sel.value) { alert("⚠️ Selecione seu nome antes de entregar."); return; }
-    if (!date)      { alert("⚠️ Preencha a data antes de entregar."); return; }
+    if (!sel.value) { 
+        alert("⚠️ Selecione seu nome antes de entregar."); 
+        return; 
+    }
+    
+    if (!date) { 
+        alert("⚠️ Preencha a data antes de entregar."); 
+        return; 
+    }
 
+    // Valida questões objetivas
+    var todasRespondidas = true;
     for (var q of ["q1","q3","q5","q7","q9"]) {
         if (!document.querySelector('input[name="' + q + '"]:checked')) {
-            alert("⚠️ Responda todas as questões de múltipla escolha."); return;
+            todasRespondidas = false;
+            break;
         }
     }
-
-    var incomplete = false;
-    for (var f of ["q2a","q2b","q2c","q4a","q4b","q4c","q6a","q6b","q6c","q8a","q8b","q8c","q10a","q10b","q10c"]) {
-        var el = document.querySelector('textarea[name="' + f + '"]');
-        if (el && el.value.trim().length < 10) { incomplete = true; break; }
+    
+    if (!todasRespondidas) {
+        alert("⚠️ Responda todas as questões de múltipla escolha."); 
+        return;
     }
-    if (incomplete && !confirm("⚠️ Algumas dissertativas parecem incompletas. Deseja continuar?")) return;
 
-    // Calcula acertos usando funções e gabarito globais
+    // Valida questões dissertativas
+    var incomplete = false;
+    var camposDissertativos = ["q2a","q2b","q2c","q4a","q4b","q4c","q6a","q6b","q6c","q8a","q8b","q8c","q10a","q10b","q10c"];
+    
+    for (var f of camposDissertativos) {
+        var el = document.querySelector('textarea[name="' + f + '"]');
+        if (el && el.value.trim().length < 10) { 
+            incomplete = true; 
+            break; 
+        }
+    }
+    
+    if (incomplete && !confirm("⚠️ Algumas dissertativas parecem incompletas. Deseja continuar?")) {
+        return;
+    }
+
+    // Calcula acertos
     var acertos  = calcAcertos();
     var nota10   = Math.round((acertos / QUESTOES_OBJ.length) * 10 * 10) / 10;
 
+    // Monta payload
     var payload = {
+        school:        "WMS6",
         sheetName:     "Respostas 6ºAno C",
         studentName:   sel.options[sel.selectedIndex].text,
         studentNumber: sel.value,
         studentGrade:  "6º Ano C",
         date:          date,
         switchCount:   switchCount,
-        correct:       acertos,
-        percentage:    nota10,
-        q1: getResposta("q1"), q3: getResposta("q3"), q5: getResposta("q5"), q7: getResposta("q7"), q9: getResposta("q9"),
-        // GAS lê d1–d5; agrupamos as 3 sub-respostas de cada questão dissertativa
+        q1: getResposta("q1"), 
+        q3: getResposta("q3"), 
+        q5: getResposta("q5"), 
+        q7: getResposta("q7"), 
+        q9: getResposta("q9"),
         d1: "Q2a: " + getTexto("q2a") + "\nQ2b: " + getTexto("q2b") + "\nQ2c: " + getTexto("q2c"),
         d2: "Q4a: " + getTexto("q4a") + "\nQ4b: " + getTexto("q4b") + "\nQ4c: " + getTexto("q4c"),
         d3: "Q6a: " + getTexto("q6a") + "\nQ6b: " + getTexto("q6b") + "\nQ6c: " + getTexto("q6c"),
@@ -497,10 +558,12 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
     QUESTOES_OBJ.forEach(function(q) {
         var resp = getResposta(q);
         var gab  = GABARITO_LOCAL[q];
+        
         if (!resp) {
             html += '<div class="result-item errado">⚠️ ' + labels[q] + ' — não respondida</div>';
             return;
         }
+        
         if (resp === gab) {
             acertos++;
             html += '<div class="result-item certo">✅ ' + labels[q] + ' — Correta! (alternativa ' + resp + ')</div>';
@@ -530,7 +593,6 @@ document.getElementById("corrigirBtn").addEventListener("click", function() {
     panel.style.display = "block";
     panel.scrollIntoView({ behavior: "smooth", block: "start" });
 });
-
 </script>
 </body>
 </html>
